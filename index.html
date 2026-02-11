@@ -8,65 +8,92 @@
 </head>
 <body>
 
-    <header class="hero">
-        <h1>Prakash</h1>
-        <p>Geospatial Data | Spatial Analytics & Visualization</p>
-    </header>
+<header class="hero fade-in">
+    <h1>Prakash</h1>
+    <p>Geospatial Data Scientist | Spatial Analytics & Visualization</p>
+</header>
 
-    <section class="intro">
-        <p>
-            I specialize in GIS-based spatial analysis, network modeling, and cartographic visualization
-            using Python and QGIS. My work focuses on urban density, transport networks,
-            terrain modeling, and environmental spatial systems.
-        </p>
-    </section>
+<section class="intro fade-in">
+    <p>
+        GIS-based spatial analysis, network modeling and cartographic visualization 
+        using Python and QGIS. Focused on urban density, infrastructure systems 
+        and environmental spatial modeling.
+    </p>
+</section>
 
-    <section class="projects">
-        <h2>Selected Spatial Visualizations</h2>
+<section class="projects fade-in">
+    <h2>Selected Spatial Visualizations</h2>
 
-        <div class="grid">
+    <div class="grid">
 
-            <div class="card">
-                <img src="images/Ahrensfelde%20Berg.png" alt="Ahrensfeldeberge">
+        <div class="card" onclick="openModal(this)">
+            <img src="images/Ahrensfelde%20Berg.png">
+            <div class="overlay">
                 <h3>Ahrensfeldeberge Terrain Analysis</h3>
+                <p>DEM-based contour analysis with slope modeling and GPS route integration.</p>
             </div>
-
-            <div class="card">
-                <img src="images/Kathmandu_Urban.jpeg" alt="Kathmandu Map">
-                <h3>Kathmandu Urban Mapping</h3>
-            </div>
-
-            <div class="card">
-                <img src="images/Malta_CellTower_Option3_Preview.png" alt="Malta Density Hex">
-                <h3>Malta Urban Density Visualization</h3>
-            </div>
-
-            <div class="card">
-                <img src="images/Eisenbahnnetz-Deutschland2025.png" alt="Germany Rail Network">
-                <h3>Germany Railway Network Density</h3>
-            </div>
-
-            <div class="card">
-                <img src="images/Deutschland_Population_Density.png" alt="Germany Population Density">
-                <h3>Germany Population Density (3D Perspective)</h3>
-            </div>
-
-            <div class="card">
-                <img src="images/Nepal_Nationalparks%20and%20its%20connection%20wth%20main%20Roadway.png" alt="Nepal National Parks">
-                <h3>Nepal National Parks & Infrastructure</h3>
-            </div>
-
-            <div class="card">
-                <img src="images/Walkability.png" alt="Walkability Isochrones">
-                <h3>Urban Walkability Isochrones</h3>
-            </div>
-
         </div>
-    </section>
 
-    <footer>
-        <p>© 2026 Prakash | Built with HTML, CSS & GIS</p>
-    </footer>
+        <div class="card" onclick="openModal(this)">
+            <img src="images/Kathmandu_Urban.jpeg">
+            <div class="overlay">
+                <h3>Kathmandu Urban Mapping</h3>
+                <p>Cartographic representation of landmarks and urban infrastructure.</p>
+            </div>
+        </div>
 
+        <div class="card" onclick="openModal(this)">
+            <img src="images/Malta_CellTower_Option3_Preview.png">
+            <div class="overlay">
+                <h3>Malta Urban Density</h3>
+                <p>Hexbin-based spatial aggregation and urban signal modeling.</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="openModal(this)">
+            <img src="images/Eisenbahnnetz-Deutschland2025.png">
+            <div class="overlay">
+                <h3>Germany Railway Density</h3>
+                <p>Network density modeling of national rail infrastructure.</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="openModal(this)">
+            <img src="images/Deutschland_Population_Density.png">
+            <div class="overlay">
+                <h3>Germany Population Density</h3>
+                <p>3D population visualization using WorldPop data.</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="openModal(this)">
+            <img src="images/Nepal_Nationalparks%20and%20its%20connection%20wth%20main%20Roadway.png">
+            <div class="overlay">
+                <h3>Nepal National Parks</h3>
+                <p>Protected areas and infrastructure spatial interaction analysis.</p>
+            </div>
+        </div>
+
+        <div class="card" onclick="openModal(this)">
+            <img src="images/Walkability.png">
+            <div class="overlay">
+                <h3>Walkability Isochrones</h3>
+                <p>10, 20 and 30 minute accessibility modeling using network analysis.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <img id="modalImg">
+</div>
+
+<footer>
+    <p>© 2026 Prakash | Built with HTML, CSS & GIS</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

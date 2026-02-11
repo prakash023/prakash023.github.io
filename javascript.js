@@ -1,3 +1,12 @@
-document.getElementById("contactBtn").addEventListener("click", function() {
-    alert("You can contact me via GitHub: https://github.com/prakash023");
-});
+function openModal(card) {
+    const img = card.querySelector("img");
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+}
+
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
