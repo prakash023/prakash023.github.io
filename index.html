@@ -5,6 +5,7 @@
     <title>Prakash | Geospatial Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="javascript.js"></script>
 
     <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -50,6 +51,22 @@
     <h2>Beispiele Projekte</h2>
 
     <div class="grid">
+
+        <!-- Tilemap Project (FIRST) -->
+        <div class="card"
+            data-static="images/tilemap.gif"
+            data-gif="images/tilemap.gif"
+            onclick="window.open('https://github.com/prakash023/TileMap-Generator-', '_blank')">
+
+            <img src="images/tilemap.gif" alt="Tilemap_Generator">
+
+            <div class="overlay">
+                <h3>GeoJSON to Tilemap</h3>
+                <p>Interactive web application for generating optimized tile grids from polygon GeoJSON datasets (Flask + Leaflet).</p>
+            </div>
+        </div>
+
+        <!-- Ahrensfelde -->
         <div class="card" onclick="openModal('ahrensfelde')">
             <img src="images/Ahrensfelde Berg.png" alt="Ahrensfelde Terrain">
             <div class="overlay">
@@ -58,6 +75,7 @@
             </div>
         </div>
 
+        <!-- Malta -->
         <div class="card" onclick="openModal('malta')">
             <img src="images/Malta_CellTower_Option3_Preview.png" alt="Malta Urban Density">
             <div class="overlay">
@@ -66,6 +84,7 @@
             </div>
         </div>
 
+        <!-- Germany Railway -->
         <div class="card" onclick="openModal('germanyrail')">
             <img src="images/Eisenbahnnetz-Deutschland2025.png" alt="Germany Railway">
             <div class="overlay">
@@ -73,7 +92,8 @@
                 <p>National infrastructure density modelling</p>
             </div>
         </div>
-        
+
+        <!-- Walkability -->
         <div class="card" onclick="openModal('walkability')">
             <img src="images/Walkability.png" alt="Walkability">
             <div class="overlay">
@@ -82,6 +102,7 @@
             </div>
         </div>
 
+        <!-- Nepal -->
         <div class="card" onclick="openModal('nepal')">
             <img src="images/Nepal_Nationalparks and its connection wth main Roadway.png" alt="Nepal">
             <div class="overlay">
@@ -90,6 +111,7 @@
             </div>
         </div>
 
+        <!-- Kathmandu -->
         <div class="card" onclick="openModal('kathmandu')">
             <img src="images/Kathmandu_Urban.jpeg" alt="Kathmandu">
             <div class="overlay">
@@ -97,6 +119,25 @@
                 <p>Landmark-based cartographic representation</p>
             </div>
         </div>
+
+        <!-- Earth Air Flow -->
+        <div class="card"
+            data-static="images/Air_earthwithin.gif"
+            data-gif="images/Air_earthwithin.gif"
+            onclick="openModal('earthflow')">
+
+            <img src="images/Air_earthwithin.gif" alt="Earth Air Flow 3D">
+
+            <div class="overlay">
+                <h3>Earth Air Flow 3D</h3>
+                <p>3D visualization of atmospheric circulation patterns.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
     </div>
 </section>
 
@@ -174,7 +215,7 @@
     </div>
 </section>
 
-<!-- Contact Section with Map -->
+
 <!-- Contact Section with Map -->
 <section class="contact-section fade-in">
     <h2>Get In Touch</h2>
@@ -229,6 +270,9 @@
             <a id="modalLink" href="#" target="_blank">View on GitHub</a>
         </div>
     </div>
+
+    
+
 </div>
 
 <footer>
@@ -305,129 +349,7 @@
         console.log('OSM map initialized successfully at zoom level 11!');
     });
 </script>
+
+</body>
 </html>
-<script>
-const canvas = document.getElementById("ballCanvas");
-const ctx = canvas.getContext("2d");
 
-function resizeCanvas() {
-  canvas.width = canvas.parentElement.offsetWidth;
-  canvas.height = canvas.parentElement.offsetHeight;
-}
-
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-let balls = [];
-let particles = [];
-
-const maxBalls = 20;
-
-function createBall() {
-  balls.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: 12 + Math.random() * 8,
-    dx: (Math.random() - 0.5) * 2,
-    dy: (Math.random() - 0.5) * 2,
-    color: `hsl(${Math.random() * 360}, 70%, 60%)`
-  });
-}
-
-function createExplosion(x, y, color) {
-  for (let i = 0; i < 20; i++) {
-    particles.push({
-      x: x,
-      y: y,
-      size: 2 + Math.random() * 3,
-      dx: (Math.random() - 0.5) * 6,
-      dy: (Math.random() - 0.5) * 6,
-      life: 60,
-      color: color
-    });
-  }
-}
-
-// Initial balls
-for (let i = 0; i < maxBalls; i++) {
-  createBall();
-}
-
-canvas.addEventListener("mousemove", function(e) {
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
-
-  balls = balls.filter(ball => {
-    const distance = Math.sqrt(
-      (mouseX - ball.x) ** 2 +
-      (mouseY - ball.y) ** 2
-    );
-
-    if (distance <= ball.radius) {
-      createExplosion(ball.x, ball.y, ball.color);
-
-      // Respawn after small delay
-      setTimeout(() => {
-        createBall();
-      }, 300);
-
-      return false;
-    }
-
-    return true;
-  });
-});
-
-function drawBall(ball) {
-  ctx.beginPath();
-  ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-  ctx.fillStyle = ball.color;
-  ctx.fill();
-  ctx.closePath();
-}
-
-function drawParticle(p) {
-  ctx.globalAlpha = p.life / 60;
-  ctx.beginPath();
-  ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-  ctx.fillStyle = p.color;
-  ctx.fill();
-  ctx.closePath();
-  ctx.globalAlpha = 1;
-}
-
-function update() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Update balls
-  balls.forEach(ball => {
-    ball.x += ball.dx;
-    ball.y += ball.dy;
-
-    if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-      ball.dx *= -1;
-    }
-
-    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-      ball.dy *= -1;
-    }
-
-    drawBall(ball);
-  });
-
-  // Update particles
-  particles = particles.filter(p => p.life > 0);
-
-  particles.forEach(p => {
-    p.x += p.dx;
-    p.y += p.dy;
-    p.life--;
-    drawParticle(p);
-  });
-
-  requestAnimationFrame(update);
-}
-
-update();
-</script>
