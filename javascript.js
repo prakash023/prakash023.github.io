@@ -210,13 +210,6 @@ function initTopAnimation() {
     resizeCanvas();
 }
 
-// Initialize everything when DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOM loaded, initializing...");
-    initTopAnimation();
-});
-
-
 /* ===============================
    INITIALIZE EVERYTHING
 ================================= */

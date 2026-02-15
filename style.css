@@ -3,6 +3,359 @@
     --dark-bg: #0e1117;
 }
 
+/* ===== MOBILE EMERGENCY FIXES - ADD AT THE VERY TOP ===== */
+@media (max-width: 768px) {
+    /* Reset everything */
+    * {
+        max-width: 100vw;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+    
+    body, html {
+        width: 100%;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* FIX 1: Navigation Bar - Completely redesigned for mobile */
+    .top-nav {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 8px 5px;
+        border-radius: 40px;
+        backdrop-filter: blur(10px);
+        z-index: 9999;
+        flex-wrap: nowrap;
+    }
+    
+    .top-nav a {
+        color: #589632;
+        text-decoration: none;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 5px 8px;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        flex: 1;
+        text-align: center;
+    }
+    
+    /* Hide the old navbar completely */
+    .navbar {
+        display: none !important;
+    }
+
+    /* FIX 2: Hero Section */
+    .hero {
+        height: 70vh;
+        width: 100%;
+        margin-top: 0;
+        padding-top: 50px;
+    }
+    
+    .hero-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+        margin-bottom: 10px;
+        word-break: break-word;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        padding: 0 10px;
+        word-break: break-word;
+    }
+    
+    /* FIX 3: Contact Links */
+    .contact-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    .contact-link {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+        background: rgba(88, 150, 50, 0.2);
+        border: 1px solid rgba(88, 150, 50, 0.5);
+        border-radius: 30px;
+        flex: 0 1 auto;
+        min-width: 100px;
+    }
+
+    /* FIX 4: Intro Section */
+    .intro {
+        padding: 40px 20px;
+        width: 100%;
+    }
+    
+    .intro p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        word-break: break-word;
+    }
+
+    /* FIX 5: Projects Section */
+    .projects {
+        padding: 40px 15px;
+        width: 100%;
+    }
+    
+    .projects h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0;
+        width: 100%;
+    }
+    
+    .card {
+        width: 100%;
+        margin: 0;
+        border-radius: 12px;
+    }
+    
+    .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+    
+    .overlay {
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.5));
+        border-radius: 0 0 12px 12px;
+    }
+
+    /* FIX 6: Skills Section */
+    .skills-section {
+        padding: 40px 15px;
+        width: 100%;
+    }
+    
+    .skills-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+    
+    .skills-network {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .center-skill {
+        width: 90px;
+        height: 90px;
+        font-size: 0.8rem;
+    }
+    
+    .geo-title {
+        font-size: 0.7rem;
+    }
+    
+    .geo-degree {
+        font-size: 0.6rem;
+    }
+    
+    .skill {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .skill i {
+        font-size: 1.2rem;
+    }
+    
+    .skill span {
+        font-size: 0.5rem;
+    }
+    
+    /* Adjust orbit positions */
+    .skill.python      { transform: rotate(0deg)   translate(120px) rotate(0deg); }
+    .skill.qgis        { transform: rotate(40deg)  translate(120px) rotate(-40deg); }
+    .skill.arcgis      { transform: rotate(80deg)  translate(120px) rotate(-80deg); }
+    .skill.geopandas   { transform: rotate(120deg) translate(120px) rotate(-120deg); }
+    .skill.postgis     { transform: rotate(160deg) translate(120px) rotate(-160deg); }
+    .skill.network     { transform: rotate(200deg) translate(120px) rotate(-200deg); }
+    .skill.cartography { transform: rotate(240deg) translate(120px) rotate(-240deg); }
+    .skill.leaflet     { transform: rotate(280deg) translate(120px) rotate(-280deg); }
+    .skill.project     { transform: rotate(320deg) translate(120px) rotate(-320deg); }
+
+    /* FIX 7: Contact Section */
+    .contact-section {
+        padding: 40px 15px;
+        width: 100%;
+    }
+    
+    .contact-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .contact-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .contact-info {
+        width: 100%;
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .collaboration-message i {
+        font-size: 2rem;
+    }
+    
+    .collaboration-message h3 {
+        font-size: 1.2rem;
+    }
+    
+    .message-text {
+        font-size: 0.85rem;
+    }
+    
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .map-wrapper {
+        width: 100%;
+        height: 250px;
+        border-radius: 16px;
+    }
+    
+    #berlin-map {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    .location-badge {
+        bottom: 10px;
+        left: 10px;
+        padding: 5px 12px;
+        font-size: 0.75rem;
+    }
+
+    /* FIX 8: Modal */
+    .modal {
+        padding: 15px;
+    }
+    
+    .modal-content {
+        flex-direction: column;
+        padding: 20px;
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .modal-content img {
+        width: 100%;
+        max-height: 180px;
+        object-fit: cover;
+    }
+    
+    .modal-text {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .modal-text h3 {
+        font-size: 1.1rem;
+    }
+    
+    .modal-text p {
+        font-size: 0.8rem;
+    }
+
+    /* FIX 9: Footer */
+    footer {
+        padding: 30px 15px;
+        width: 100%;
+    }
+    
+    footer p {
+        font-size: 0.75rem;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+    .top-nav a {
+        font-size: 0.6rem;
+        padding: 4px 4px;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.8rem;
+    }
+    
+    .contact-link {
+        min-width: 80px;
+        font-size: 0.7rem;
+        padding: 6px 10px;
+    }
+    
+    .skills-network {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .skill.python      { transform: rotate(0deg)   translate(100px) rotate(0deg); }
+    .skill.qgis        { transform: rotate(40deg)  translate(100px) rotate(-40deg); }
+    .skill.arcgis      { transform: rotate(80deg)  translate(100px) rotate(-80deg); }
+    .skill.geopandas   { transform: rotate(120deg) translate(100px) rotate(-120deg); }
+    .skill.postgis     { transform: rotate(160deg) translate(100px) rotate(-160deg); }
+    .skill.network     { transform: rotate(200deg) translate(100px) rotate(-200deg); }
+    .skill.cartography { transform: rotate(240deg) translate(100px) rotate(-240deg); }
+    .skill.leaflet     { transform: rotate(280deg) translate(100px) rotate(-280deg); }
+    .skill.project     { transform: rotate(320deg) translate(100px) rotate(-320deg); }
+}
+
+/* Original CSS continues below */
 * {
     margin: 0;
     padding: 0;
@@ -16,14 +369,13 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
-/*yo bhanda tala ko le link lai touch garcha*/
+
 /* Navigation Bar at the top */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: auto;
-    
     background-color: rgba(0, 0, 0, 0.7);
     padding: 10px 20px;
     z-index: 100;
@@ -32,7 +384,6 @@ body {
 .navbar-links {
     display: flex;
     justify-content: center;
-    gap: 15px;
     gap: 15px;
 }
 
@@ -45,7 +396,7 @@ body {
 }
 
 .navbar-links a:hover {
-    color: #589632; /* Highlight color */
+    color: #589632;
     transform: translateY(-3px);
 }
 
@@ -67,7 +418,6 @@ body {
 }
 
 /* Top right navigation links - FIXED POSITION */
-/* Top right navigation links - FIXED POSITION */
 .top-nav {
     position: fixed;
     top: 25px;
@@ -78,7 +428,7 @@ body {
 }
 
 .top-nav a {
-    color: #589632;  /* Green color */
+    color: #589632;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 600;
@@ -90,11 +440,23 @@ body {
 }
 
 .top-nav a:hover {
-    color: #74a83d;  /* Lighter green on hover */
+    color: #74a83d;
     border-bottom-color: #589632;
 }
 
 /* Responsive adjustment for mobile */
+@media (max-width: 768px) {
+    .top-nav {
+        right: 20px;
+        gap: 15px;
+    }
+    
+    .top-nav a {
+        font-size: 0.85rem;
+        color: #589632;
+    }
+}
+
 @media (max-width: 600px) {
     .top-nav {
         right: 20px;
@@ -103,22 +465,8 @@ body {
     
     .top-nav a {
         font-size: 0.85rem;
-        color: #589632;  /* Keep green on mobile */
     }
 }
-
-/* Responsive adjustment for mobile */
-@media (max-width: 600px) {
-    .top-nav {
-        right: 20px;
-        gap: 15px;
-    }
-    
-    .top-nav a {
-        font-size: 0.85rem;
-    }
-}
-
 
 .nav-separator {
     color: rgba(255,255,255,0.3);
@@ -133,7 +481,7 @@ html {
 /* Section Styles */
 section {
     padding: 60px 20px;
-    margin-top: 80px; /* Adjust for the navbar */
+    margin-top: 80px;
 }
 
 .projects, .skills-section, .contact-section {
@@ -164,25 +512,21 @@ h2 {
     }
 }
 
-/*  yaha bhanda mathi le tyo project ko tala direct jane link create garcha*/
-
 .highlight {
     color: #589632;
     font-weight: 600;
 }
 
 /* Hero Section with Canvas */
-/* Resize hero section to a smaller height */
-/* Hero Section */
 .hero {
     position: relative;
-    height: 60vh; /* Reduced height to 60% of the viewport height */
+    height: 60vh;
     overflow: hidden;
     background: #0e1117;
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    flex-direction: column; /* Stack items vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* Hero content (text content) */
@@ -191,9 +535,9 @@ h2 {
     z-index: 5;
     text-align: center;
     color: white;
-    padding-top: 10vh; /* Adjust this to move text down/Up (20vh to start in middle) */
-    width: 100%; /* Ensure full width within hero */
-    z-index: 10; /* Ensure text is above the animation */
+    padding-top: 10vh;
+    width: 100%;
+    z-index: 10;
 }
 
 /* Title styling */
@@ -212,11 +556,11 @@ h2 {
 
 /* Adjust canvas size within hero section */
 #gridCanvas {
-    width: 100%; /* Full width of the parent container (hero) */
-    height: 100%; /* Full height of the parent container (hero) */
+    width: 100%;
+    height: 100%;
     display: block;
-    margin: 0 auto; /* Center the canvas horizontally */
-    z-index: 1; /* Ensure canvas is behind text */
+    margin: 0 auto;
+    z-index: 1;
 }
 
 /* Dark overlay */
@@ -232,7 +576,6 @@ h2 {
     );
     z-index: 0;
 }
-
 
 /* Contact links below name */
 .contact-links {
@@ -290,9 +633,6 @@ h2 {
     font-size: 1.1rem;
     line-height: 1.8;
 }
-
-/* Additional sections remain the same */
-
 
 /* Projects Section */
 .projects {
@@ -373,13 +713,8 @@ h2 {
 }
 
 /* ==============================
-   SKILLS SECTION - UPDATED
+   SKILLS SECTION
 ============================== */
-
-/* ==============================
-   SKILLS SECTION - CLEAN VERSION
-============================== */
-
 .skills-section {
     text-align: center;
     padding: 100px 20px;
@@ -394,10 +729,11 @@ h2 {
 
 /* Main container */
 .skills-network {
+    position: relative;
     width: min(90vw, 600px);
     height: min(90vw, 600px);
+    margin: 0 auto;
 }
-
 
 /* Center circle */
 .center-skill {
@@ -408,13 +744,11 @@ h2 {
     height: 160px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-
     background: linear-gradient(135deg, #589632, #74a83d);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     color: white;
     font-weight: 600;
     box-shadow: 0 10px 30px rgba(88,150,50,0.4);
@@ -436,13 +770,12 @@ h2 {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     transform-origin: 0 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Fixed circle layout */
@@ -483,8 +816,6 @@ h2 {
     box-shadow: 0 0 25px #589632;
     z-index: 20;
 }
-
-
 
 /* Contact Section */
 .contact-section {
@@ -702,20 +1033,6 @@ h2 {
     color: #589632;
 }
 
-/* Fade In Animation */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.8s ease forwards;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Footer */
 footer {
     text-align: center;
@@ -786,7 +1103,6 @@ footer {
     .hero h1 {
         font-size: clamp(28px, 5vw, 48px);
     }
-
     
     .intro {
         padding: 40px 20px;
@@ -838,4 +1154,49 @@ footer {
     .skill i {
         font-size: 1.2rem;
     }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .card:hover {
+        transform: none;
+    }
+    
+    .card:hover img {
+        transform: none;
+    }
+    
+    .overlay {
+        transform: translateY(0);
+        opacity: 0.9;
+    }
+    
+    .skill:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .social-icon:hover {
+        transform: none;
+    }
+    
+    .contact-link:hover {
+        transform: none;
+    }
+}
+
+/* Improve touch targets */
+.contact-link, 
+.social-icon, 
+.card, 
+.top-nav a,
+.modal .close {
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+/* Prevent text overflow */
+h1, h2, h3, p, a, span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
