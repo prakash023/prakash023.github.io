@@ -9,25 +9,225 @@ body {
     background: #ffffff;
     color: #333333;
     line-height: 1.6;
+    overflow-x: hidden;
+}
+/*yo bhanda tala ko le link lai touch garcha*/
+/* Navigation Bar at the top */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    z-index: 100;
 }
 
-/* Hero Section - White */
-.hero {
+.navbar-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    gap: 15px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #589632; /* Highlight color */
+    transform: translateY(-3px);
+}
+
+/* Top navigation links */
+.top-nav-links {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.top-nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.top-nav-links a:hover {
+    color: #589632;
+}
+
+/* Top right navigation links - FIXED POSITION */
+/* Top right navigation links - FIXED POSITION */
+.top-nav {
+    position: fixed;
+    top: 25px;
+    right: 40px;
+    z-index: 1000;
+    display: flex;
+    gap: 30px;
+}
+
+.top-nav a {
+    color: #589632;  /* Green color */
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-bottom: 2px solid transparent;
+}
+
+.top-nav a:hover {
+    color: #74a83d;  /* Lighter green on hover */
+    border-bottom-color: #589632;
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 600px) {
+    .top-nav {
+        right: 20px;
+        gap: 15px;
+    }
+    
+    .top-nav a {
+        font-size: 0.85rem;
+        color: #589632;  /* Keep green on mobile */
+    }
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 600px) {
+    .top-nav {
+        right: 20px;
+        gap: 15px;
+    }
+    
+    .top-nav a {
+        font-size: 0.85rem;
+    }
+}
+
+
+.nav-separator {
+    color: rgba(255,255,255,0.3);
+    margin: 0 5px;
+}
+
+/* Add smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Section Styles */
+section {
+    padding: 60px 20px;
+    margin-top: 80px; /* Adjust for the navbar */
+}
+
+.projects, .skills-section, .contact-section {
+    background-color: #f0f0f0;
+}
+
+h2 {
     text-align: center;
-    padding: 80px 20px 60px;
-    background: #ffffff;
+    margin-bottom: 30px;
 }
 
+/* Additional Styling for sections */
+.projects, .skills-section, .contact-section {
+    background-color: #f0f0f0;
+    margin-bottom: 40px;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*  yaha bhanda mathi le tyo project ko tala direct jane link create garcha*/
+
+.highlight {
+    color: #589632;
+    font-weight: 600;
+}
+
+/* Hero Section with Canvas */
+/* Resize hero section to a smaller height */
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 60vh; /* Reduced height to 60% of the viewport height */
+    overflow: hidden;
+    background: #0e1117;
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    flex-direction: column; /* Stack items vertically */
+}
+
+/* Hero content (text content) */
+.hero-content {
+    position: absolute;
+    z-index: 5;
+    text-align: center;
+    color: white;
+    padding-top: 10vh; /* Adjust this to move text down/Up (20vh to start in middle) */
+    width: 100%; /* Ensure full width within hero */
+    z-index: 10; /* Ensure text is above the animation */
+}
+
+/* Title styling */
 .hero h1 {
     font-size: 48px;
     margin-bottom: 10px;
-    color: #1a1a1a;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Description styling */
 .hero p {
-    color: #666666;
+    color: #dddddd;
     font-size: 1.2rem;
 }
+
+/* Adjust canvas size within hero section */
+#gridCanvas {
+    width: 100%; /* Full width of the parent container (hero) */
+    height: 100%; /* Full height of the parent container (hero) */
+    display: block;
+    margin: 0 auto; /* Center the canvas horizontally */
+    z-index: 1; /* Ensure canvas is behind text */
+}
+
+/* Dark overlay */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.2),
+        rgba(0,0,0,0.7)
+    );
+    z-index: 0;
+}
+
 
 /* Contact links below name */
 .contact-links {
@@ -39,13 +239,14 @@ body {
 }
 
 .contact-link {
-    color: #333333;
+    color: white;
     text-decoration: none;
     font-size: 1rem;
     padding: 8px 20px;
     border-radius: 30px;
-    background: #f5f5f5;
-    border: 1px solid #eaeaea;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -62,14 +263,14 @@ body {
     color: white;
     border-color: #589632;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(88, 150, 50, 0.2);
+    box-shadow: 0 5px 15px rgba(88, 150, 50, 0.4);
 }
 
 .contact-link:hover i {
     color: white;
 }
 
-/* Intro Section - White with subtle divider */
+/* Intro Section */
 .intro {
     max-width: 800px;
     margin: 0 auto;
@@ -85,7 +286,10 @@ body {
     line-height: 1.8;
 }
 
-/* Projects Section - White */
+/* Additional sections remain the same */
+
+
+/* Projects Section */
 .projects {
     padding: 80px 40px;
     background: #ffffff;
@@ -108,77 +312,73 @@ body {
 }
 
 .card {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 10px;
 }
 
 .card img {
-  width: 100%;
-  display: block;
-  transition: transform 0.4s ease;
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
 }
 
-
 .card:hover {
-  transform: scale(1.08);
-  z-index: 10;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    transform: scale(1.08);
+    z-index: 10;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .card:hover img {
-  transform: scale(1.05);  /*scaling here*/
+    transform: scale(1.05);
 }
-
 
 .overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85),
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0)
-  );
-
-  color: #fff;
-
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0.6),
+        transparent
+    );
+    color: #fff;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
 }
-
-.card:hover .overlay {
-  transform: translateY(0);
-}
-
 
 .card:hover .overlay {
     transform: translateY(0);
 }
 
 .overlay h3 {
-    color: #1a1a1a;
+    color: #589632;
     margin-bottom: 5px;
     font-size: 1.1rem;
 }
 
 .overlay p {
-    color: #666666;
+    color: #ffffff;
     font-size: 0.9rem;
 }
 
-/* ========== BLACK SECTION STARTS HERE ========== */
-/* Skills Section - Black */
+/* ==============================
+   SKILLS SECTION - UPDATED
+============================== */
+
+/* ==============================
+   SKILLS SECTION - CLEAN VERSION
+============================== */
+
 .skills-section {
     text-align: center;
-    padding: 80px 20px 120px;
-    background: #0e1117; /* Rich black */
-    border-top: 1px solid #222222;
+    padding: 100px 20px;
+    background: #0e1117;
 }
 
 .skills-section h2 {
@@ -187,129 +387,72 @@ body {
     color: #ffffff;
 }
 
+/* Main container */
 .skills-network {
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: min(80vw, 600px);
+    height: min(80vw, 600px);
     margin: 0 auto;
-    --radius: 250px;
 }
 
-/* Center skill - Green pops on black */
+/* Center circle */
 .center-skill {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 160px;
     height: 160px;
-    background: linear-gradient(135deg, #589632 0%, #74a83d 100%);
+    transform: translate(-50%, -50%);
     border-radius: 50%;
+
+    background: linear-gradient(135deg, #589632, #74a83d);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     color: white;
     font-weight: 600;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(88, 150, 50, 0.4);
-    z-index: 30;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    padding: 0 10px;
-    line-height: 1.3;
-}
-
-.geo-title {
-    font-size: 1.1rem;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.geo-degree {
-    font-size: 0.9rem;
-    opacity: 0.9;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 3px 10px;
-    border-radius: 20px;
-    display: inline-block;
+    box-shadow: 0 10px 30px rgba(88,150,50,0.4);
+    border: 3px solid rgba(255,255,255,0.2);
+    z-index: 10;
 }
 
 /* Orbit container */
 .orbit-container {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    animation: orbitRotate 30s linear infinite;
-    z-index: 10;
+    inset: 0;
 }
 
-/* SVG connections - Brighter on black */
-.connections {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    pointer-events: none;
-    animation: orbitRotate 30s linear infinite;
-}
-
-.connections line {
-    stroke: #589632;
-    stroke-width: 2;
-    stroke-dasharray: 5,5;
-    opacity: 0.7; /* Brighter on dark background */
-}
-
-/* Individual skills - Pop on black */
+/* Skill base */
 .skill {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 100px;
     height: 100px;
     border-radius: 50%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    border: 2px solid rgba(88, 150, 50, 0.4);
-    cursor: pointer;
-    z-index: 20;
-    color: #333;
-    font-size: 0.8rem;
-    gap: 5px;
-    animation: counterRotate 30s linear infinite;
+
+    transform-origin: 0 0;
 }
 
-/* Position each skill */
-.skill.python { top: calc(50% - var(--radius)); left: 50%; }
-.skill.qgis { top: calc(50% - (var(--radius) * 0.5)); left: calc(50% + (var(--radius) * 0.866)); }
-.skill.arcgis { top: 50%; left: calc(50% + var(--radius)); }
-.skill.geopandas { top: calc(50% + (var(--radius) * 0.5)); left: calc(50% + (var(--radius) * 0.866)); }
-.skill.postgis { top: calc(50% + var(--radius)); left: 50%; }
-.skill.network { top: calc(50% + (var(--radius) * 0.5)); left: calc(50% - (var(--radius) * 0.866)); }
-.skill.cartography { top: 50%; left: calc(50% - var(--radius)); }
-.skill.leaflet { top: calc(50% - (var(--radius) * 0.5)); left: calc(50% - (var(--radius) * 0.866)); }
-.skill.project { 
-    top: calc(50% - (var(--radius) * 0.3)); 
-    left: calc(50% + (var(--radius) * 0.8)); 
-}
+/* Fixed circle layout */
+.skill.python      { transform: rotate(0deg)   translate(220px) rotate(0deg); }
+.skill.qgis        { transform: rotate(40deg)  translate(220px) rotate(-40deg); }
+.skill.arcgis      { transform: rotate(80deg)  translate(220px) rotate(-80deg); }
+.skill.geopandas   { transform: rotate(120deg) translate(220px) rotate(-120deg); }
+.skill.postgis     { transform: rotate(160deg) translate(220px) rotate(-160deg); }
+.skill.network     { transform: rotate(200deg) translate(220px) rotate(-200deg); }
+.skill.cartography { transform: rotate(240deg) translate(220px) rotate(-240deg); }
+.skill.leaflet     { transform: rotate(280deg) translate(220px) rotate(-280deg); }
+.skill.project     { transform: rotate(320deg) translate(220px) rotate(-320deg); }
 
-.skill i {
-    font-size: 2rem;
-    margin-bottom: 2px;
-}
-
-.skill span {
-    font-weight: 500;
-}
-
-/* Individual Colors for skills - More vibrant on black */
+/* Skill colors */
 .skill.python { background: #6c5ce7; color: white; }
 .skill.qgis { background: #589632; color: white; }
 .skill.arcgis { background: #2C7AC3; color: white; }
@@ -320,34 +463,26 @@ body {
 .skill.leaflet { background: #55efc4; color: #2d3436; }
 .skill.project { background: #e1b12c; color: #2d3436; }
 
-/* Rotation animations */
-@keyframes orbitRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+.skill i {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
 }
 
-@keyframes counterRotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(-360deg); }
+.skill span {
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 
-/* Pause rotation on hover */
-.skills-network:hover .orbit-container,
-.skills-network:hover .connections,
-.skills-network:hover .skill {
-    animation-play-state: paused;
-}
-
-/* Hover effect for skills - Stronger glow on black */
+/* Hover effect */
 .skill:hover {
-    transform: translate(-50%, -50%) scale(1.15) !important;
-    box-shadow: 0 0 30px #589632, 0 0 60px rgba(88, 150, 50, 0.4);
-    border-color: #589632;
-    z-index: 40;
-    animation-play-state: paused !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #589632;
+    z-index: 20;
 }
 
-/* Contact Section - Black */
+
+
+/* Contact Section */
 .contact-section {
     text-align: center;
     padding: 80px 40px;
@@ -370,7 +505,6 @@ body {
     text-align: left;
 }
 
-/* Contact Info Left Side - White cards on black */
 .contact-info {
     background: #ffffff;
     border-radius: 20px;
@@ -448,7 +582,7 @@ body {
     border-color: #589632;
 }
 
-/* Map Wrapper - White card on black */
+/* Map Wrapper */
 .map-wrapper {
     position: relative;
     width: 100%;
@@ -578,7 +712,7 @@ body {
     }
 }
 
-/* Footer - Black */
+/* Footer */
 footer {
     text-align: center;
     padding: 40px;
@@ -623,12 +757,6 @@ footer {
 }
 
 @media (max-width: 700px) {
-    .skills-network {
-        width: 450px;
-        height: 450px;
-        --radius: 180px;
-    }
-    
     .center-skill {
         width: 130px;
         height: 130px;
@@ -648,7 +776,11 @@ footer {
 
 @media (max-width: 500px) {
     .hero {
-        padding: 60px 20px 40px;
+        height: 100vh;
+    }
+    
+    .hero h1 {
+        font-size: 36px;
     }
     
     .intro {
@@ -686,12 +818,6 @@ footer {
         font-size: 0.9rem;
     }
     
-    .skills-network {
-        width: 350px;
-        height: 350px;
-        --radius: 130px;
-    }
-    
     .center-skill {
         width: 100px;
         height: 100px;
@@ -708,46 +834,3 @@ footer {
         font-size: 1.2rem;
     }
 }
-#ball-section {
-  position: relative;
-  height: 250px;
-  background: #111111;
-  overflow: hidden;
-}
-
-#ballCanvas {
-  display: block;
-}
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  min-height: 450px;   /* Increase space for animation */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #ffffff(
-
-    
-  );
-
-
-}
-
-#ballCanvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-

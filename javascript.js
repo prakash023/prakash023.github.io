@@ -1,5 +1,5 @@
 /* ===============================
-   PROJECT MODAL
+   PROJECT MODAL DATA - YOUR ORIGINAL PROJECTS
 ================================= */
 
 const projects = {
@@ -44,8 +44,19 @@ const projects = {
         description: "Urban landmark cartography with thematic representation.",
         tools: "Tools: QGIS · Cartography",
         link: "https://github.com/prakash023"
+    },
+    earthflow: {
+        image: "images/Air_earthwithin.gif",
+        title: "Earth Air Flow 3D",
+        description: "3D visualization of atmospheric circulation patterns.",
+        tools: "Tools: Three.js · WebGL · Climate Data",
+        link: "https://github.com/prakash023"
     }
 };
+
+/* ===============================
+   MODAL FUNCTIONS
+================================= */
 
 function openModal(projectKey) {
     const modal = document.getElementById("projectModal");
@@ -59,11 +70,13 @@ function openModal(projectKey) {
         document.getElementById("modalLink").href = project.link;
 
         modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
     }
 }
 
 function closeModal() {
     document.getElementById("projectModal").style.display = "none";
+    document.body.style.overflow = "auto";
 }
 
 document.addEventListener("keydown", function (event) {
@@ -72,334 +85,146 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
+window.addEventListener("click", function(event) {
+    const modal = document.getElementById("projectModal");
+    if (event.target === modal) {
+        closeModal();
+    }
+});
 
 /* ===============================
-   LEAFLET MAP
+   LEAFLET MAP 
 ================================= */
-
-window.addEventListener("load", function () {
-    const berlinLat = 52.5200;
-    const berlinLng = 13.4050;
-
+/* Initialize the Map and fix the map to Berlin*/
+function initMap() {
     const mapElement = document.getElementById("berlin-map");
+    if (!mapElement || typeof L === "undefined") return;
 
-    if (mapElement && typeof L !== "undefined") {
-        const map = L.map("berlin-map").setView([berlinLat, berlinLng], 10);
+    mapElement.innerHTML = '';
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution:
-                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-
-        L.marker([berlinLat, berlinLng])
-            .addTo(map)
-            .bindPopup("<b>Berlin, Germany</b><br>📍 Based here")
-            .openPopup();
-
-        setTimeout(() => map.invalidateSize(), 200);
-    }
-
-    initHeroAnimation();
-});
-
-
-/* ===============================
-   HERO CANVAS ANIMATION
-================================= */
-
-function initHeroAnimation() {
-    const canvas = document.getElementById("ballCanvas");
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-
-    function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    let balls = [];
-    let particles = [];
-    const maxBalls = 20;
-
-    function createBall() {
-        balls.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: 12 + Math.random() * 8,
-            dx: (Math.random() - 0.5) * 1.5,
-            dy: (Math.random() - 0.5) * 1.5,
-            color: `hsl(${Math.random() * 360}, 70%, 60%)`
-        });
-    }
-
-    function createExplosion(x, y, color) {
-        for (let i = 0; i < 20; i++) {
-            particles.push({
-                x: x,
-                y: y,
-                size: 2 + Math.random() * 3,
-                dx: (Math.random() - 0.5) * 6,
-                dy: (Math.random() - 0.5) * 6,
-                life: 70,
-                gravity: 0.12,
-                color: color
-            });
-        }
-    }
-
-    for (let i = 0; i < maxBalls; i++) {
-        createBall();
-    }
-
-    canvas.addEventListener("mousemove", function (e) {
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        balls = balls.filter(ball => {
-            const distance = Math.sqrt(
-                (mouseX - ball.x) ** 2 +
-                (mouseY - ball.y) ** 2
-            );
-
-            if (distance <= ball.radius) {
-                createExplosion(ball.x, ball.y, ball.color);
-
-                setTimeout(() => {
-                    createBall();
-                }, 300);
-
-                return false;
-            }
-
-            return true;
-        });
-    });
-
-    function drawBall(ball) {
-        ctx.shadowColor = ball.color;
-        ctx.shadowBlur = 12;
-        
-        
-        
-        ctx.beginPath();
-        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-        ctx.fillStyle = ball.color;
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.shadowBlur = 0;
-    }
-
-    function drawParticle(p) {
-        ctx.globalAlpha = p.life / 70;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-        ctx.closePath();
-        ctx.globalAlpha = 1;
-    }
-
-    function update() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        balls.forEach(ball => {
-            ball.x += ball.dx;
-            ball.y += ball.dy;
-
-            if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-                ball.dx *= -1;
-            }
-
-            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-                ball.dy *= -1;
-            }
-
-            drawBall(ball);
-        });
-
-        particles = particles.filter(p => p.life > 0);
-
-        particles.forEach(p => {
-            p.dy += p.gravity;
-            p.x += p.dx;
-            p.y += p.dy;
-            p.life--;
-            drawParticle(p);
-        });
-
-        requestAnimationFrame(update);
-    }
-
-    update();
+    const map = L.map("berlin-map", {
+        dragging: false,        // Disable dragging
+        touchZoom: false,       // Disable touch zoom
+        scrollWheelZoom: false, // Disable scroll wheel zoom
+        doubleClickZoom: false, // Disable double click zoom
+        boxZoom: false,         // Disable box zoom
+        tap: false,             // Disable tap on mobile
+        keyboard: false,        // Disable keyboard controls
+        zoomControl: false      // Remove zoom controls
+    }).setView([52.5200, 13.4050], 11);
+    
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+    
+    L.marker([52.5200, 13.4050]).addTo(map)
+        .bindPopup("<b>Berlin, Deutschland</b><br>📍 Based here")
+        .openPopup();
+    
+    setTimeout(() => map.invalidateSize(), 200);
 }
-/* ===============================
-   GIF HOVER SWAP
-================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    document.querySelectorAll(".card").forEach(card => {
-
-        const img = card.querySelector("img");
-        const staticSrc = card.getAttribute("data-static");
-        const gifSrc = card.getAttribute("data-gif");
-
-        console.log("GIF swap script running"); 
 
 
-        if (gifSrc && staticSrc) {
-
-            card.addEventListener("mouseenter", () => {
-                img.src = gifSrc;
-            });
-
-            card.addEventListener("mouseleave", () => {
-                img.src = staticSrc;
-            });
-
-        }
-
-    });
-
-});
 
 /* ===============================
-   HERO CANVAS ANIMATION
-================================= */
-/* ===============================
-   HERO CANVAS ANIMATION
+   SIMPLE BUT ATTRACTIVE TOP ANIMATION - GUARANTEED TO WORK
 ================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const canvas = document.getElementById("ballCanvas");
-    if (!canvas) return;
+function initTopAnimation() {
+    const canvas = document.getElementById("gridCanvas");
+    const hero = document.querySelector(".hero");
+    if (!canvas || !hero) return;
 
     const ctx = canvas.getContext("2d");
 
     function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+        canvas.width = window.innerWidth * 0.5; // 50% of screen width
+        canvas.height = hero.offsetHeight; // Match the height of the hero section
+        console.log("Canvas resized:", canvas.width, "x", canvas.height);
     }
 
-    resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    let balls = [];
-    let particles = [];
-    const maxBalls = 20;
+    let time = 0;
+    let mouseX = canvas.width / 2;
+    let mouseY = canvas.height / 2;
 
-    function createBall() {
-        balls.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: 12 + Math.random() * 8,
-            dx: (Math.random() - 0.5) * 1.8,
-            dy: (Math.random() - 0.5) * 1.8,
-            color: `hsl(${Math.random() * 360}, 70%, 60%)`
-        });
+    window.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left; // Ensure correct cursor matching
+        mouseY = e.clientY - rect.top;
+    });
+
+    // Simple Perlin noise function to simulate elevation
+    function noise(x, y) {
+        return Math.sin(x * 0.02) * Math.cos(y * 0.02) + 
+               Math.sin(x * 0.03 + time) * Math.cos(y * 0.03) * 0.5;
     }
 
-    function createExplosion(x, y, color) {
-        for (let i = 0; i < 20; i++) {
-            particles.push({
-                x,
-                y,
-                size: 2 + Math.random() * 3,
-                dx: (Math.random() - 0.5) * 6,
-                dy: (Math.random() - 0.5) * 6,
-                life: 60,
-                gravity: 0.12,
-                color
-            });
+    // Function to draw contour lines based on Perlin noise
+    function drawContours() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous frame
+        
+        ctx.lineWidth = 1.2;
+
+        // Loop through the canvas to generate contour lines
+        for (let y = 0; y < canvas.height; y += 20) {
+            ctx.beginPath();
+
+            // Loop through each point in the row and generate noise
+            for (let x = 0; x < canvas.width; x += 5) {
+                const n = noise(x + time * 10, y);
+                const offset = n * 30; // Elevation offset based on noise
+                const py = y + offset;
+
+                // Move to the first point
+                if (x === 0) ctx.moveTo(x, py);
+                else ctx.lineTo(x, py);
+            }
+
+            // Choose a color based on the elevation (Perlin noise value)
+            const colorFactor = Math.sin(time * 0.01) * 0.5 + 0.5;
+            ctx.strokeStyle = `rgba(${Math.floor(255 * colorFactor)}, ${Math.floor(255 * (1 - colorFactor))}, 255, 0.5)`;
+
+            ctx.stroke(); // Draw the contour line
         }
     }
 
-    for (let i = 0; i < maxBalls; i++) {
-        createBall();
+    // Function to animate the contour lines
+    function animate() {
+        // Increase the time to animate the contours
+        time += 0.05;
+
+        // Draw the contour lines based on noise and time
+        drawContours();
+
+        // Repeat the animation loop
+        requestAnimationFrame(animate);
     }
 
-    canvas.addEventListener("mousemove", function (e) {
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+    // Start the animation
+    animate();
+    console.log("Animation started!");
 
-        balls = balls.filter(ball => {
-            const distance = Math.sqrt(
-                (mouseX - ball.x) ** 2 +
-                (mouseY - ball.y) ** 2
-            );
+    // Initial call to resize the canvas
+    resizeCanvas();
+}
 
-            if (distance <= ball.radius) {
-                createExplosion(ball.x, ball.y, ball.color);
-
-                setTimeout(createBall, 300);
-                return false;
-            }
-
-            return true;
-        });
-    });
-
-    function drawBall(ball) {
-        ctx.shadowColor = ball.color;
-        ctx.shadowBlur = 12;
-
-        ctx.beginPath();
-        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-        ctx.fillStyle = ball.color;
-        ctx.fill();
-        ctx.closePath();
-
-        ctx.shadowBlur = 0;
-    }
-
-    function drawParticle(p) {
-        ctx.globalAlpha = p.life / 60;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-        ctx.closePath();
-        ctx.globalAlpha = 1;
-    }
-
-    function update() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        balls.forEach(ball => {
-            ball.x += ball.dx;
-            ball.y += ball.dy;
-
-            if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-                ball.dx *= -1;
-            }
-
-            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-                ball.dy *= -1;
-            }
-
-            drawBall(ball);
-        });
-
-        particles = particles.filter(p => p.life > 0);
-
-        particles.forEach(p => {
-            p.dy += p.gravity;
-            p.x += p.dx;
-            p.y += p.dy;
-            p.life--;
-            drawParticle(p);
-        });
-
-        requestAnimationFrame(update);
-    }
-
-    update();
+// Initialize everything when DOM is loaded
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM loaded, initializing...");
+    initTopAnimation();
 });
+
+
+/* ===============================
+   INITIALIZE EVERYTHING
+================================= */
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM loaded, initializing...");
+    initMap();
+    initTopAnimation();
+});
+
+

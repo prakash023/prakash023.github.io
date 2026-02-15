@@ -4,352 +4,269 @@
     <meta charset="UTF-8">
     <title>Prakash | Geospatial Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="javascript.js"></script>
-
+    
     <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Leaflet CSS for map - MUST be loaded -->
+    <!-- Leaflet CSS for map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
-    <!-- Leaflet JavaScript - MUST be loaded before map initialization -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="hero fade-in">
-
-    <canvas id="ballCanvas"></canvas>
-
-    <div class="hero-content">
-        <h1>Prakash Neupane</h1>
-        <p>Geodatenmanagement | Spatial Analytics & Visualization</p>
-        
-        <div class="contact-links">
-            <a href="https://www.linkedin.com/in/neup/" target="_blank" class="contact-link">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/prakash023" target="_blank" class="contact-link">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-        </div>
+    <!-- Top right navigation links - FIXED POSITION -->
+    <div class="top-nav">
+        <a href="#projects">Beispiel Projekte</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Get in Touch</a>
     </div>
 
-</header>
-
-
-<section class="intro fade-in">
-    <p>
-        Aus Leidenschaft für Geodaten und Technologie möchte ich mit meiner Expertise in Geoinformation, Python, 
-        ArcGIS, QGIS und Systemadministration dazu beitragen, GIS-Systeme zienter zu gestalten und
-        datenbasierte Entscheidungen zu unterstützen. 
-    </p>
-</section>
-
-<section class="projects fade-in">
-    <h2>Beispiele Projekte</h2>
-
-    <div class="grid">
-
-        <!-- Tilemap Project (FIRST) -->
-        <div class="card"
-            data-static="images/tilemap.gif"
-            data-gif="images/tilemap.gif"
-            onclick="window.open('https://github.com/prakash023/TileMap-Generator-', '_blank')">
-
-            <img src="images/tilemap.gif" alt="Tilemap_Generator">
-
-            <div class="overlay">
-                <h3>GeoJSON to Tilemap</h3>
-                <p>Interactive web application for generating optimized tile grids from polygon GeoJSON datasets (Flask + Leaflet).</p>
+    <header class="hero">
+        <canvas id="gridCanvas"></canvas>
+        <div class="hero-content">
+            <h1>Prakash Neupane</h1>
+            <p>Geodatenmanagement | Spatial Analytics & Visualization</p>
+            
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/neup/" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/prakash023" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
             </div>
         </div>
-
-        <!-- Ahrensfelde -->
-        <div class="card" onclick="openModal('ahrensfelde')">
-            <img src="images/Ahrensfelde Berg.png" alt="Ahrensfelde Terrain">
-            <div class="overlay">
-                <h3>Ahrensfelde Terrain Analysis</h3>
-                <p>Digital elevation modelling & contour interpretation</p>
-            </div>
-        </div>
-
-        <!-- Malta -->
-        <div class="card" onclick="openModal('malta')">
-            <img src="images/Malta_CellTower_Option3_Preview.png" alt="Malta Urban Density">
-            <div class="overlay">
-                <h3>Malta Urban Density</h3>
-                <p>Hexagonal spatial aggregation of OSM building data</p>
-            </div>
-        </div>
-
-        <!-- Germany Railway -->
-        <div class="card" onclick="openModal('germanyrail')">
-            <img src="images/Eisenbahnnetz-Deutschland2025.png" alt="Germany Railway">
-            <div class="overlay">
-                <h3>Germany Railway Network</h3>
-                <p>National infrastructure density modelling</p>
-            </div>
-        </div>
-
-        <!-- Walkability -->
-        <div class="card" onclick="openModal('walkability')">
-            <img src="images/Walkability.png" alt="Walkability">
-            <div class="overlay">
-                <h3>Urban Walkability</h3>
-                <p>Accessibility modelling using network analysis</p>
-            </div>
-        </div>
-
-        <!-- Nepal -->
-        <div class="card" onclick="openModal('nepal')">
-            <img src="images/Nepal_Nationalparks and its connection wth main Roadway.png" alt="Nepal">
-            <div class="overlay">
-                <h3>Nepal National Parks</h3>
-                <p>Protected areas & infrastructure interaction</p>
-            </div>
-        </div>
-
-        <!-- Kathmandu -->
-        <div class="card" onclick="openModal('kathmandu')">
-            <img src="images/Kathmandu_Urban.jpeg" alt="Kathmandu">
-            <div class="overlay">
-                <h3>Kathmandu Urban Mapping</h3>
-                <p>Landmark-based cartographic representation</p>
-            </div>
-        </div>
-
-        <!-- Earth Air Flow -->
-        <div class="card"
-            data-static="images/Air_earthwithin.gif"
-            data-gif="images/Air_earthwithin.gif"
-            onclick="openModal('earthflow')">
-
-            <img src="images/Air_earthwithin.gif" alt="Earth Air Flow 3D">
-
-            <div class="overlay">
-                <h3>Earth Air Flow 3D</h3>
-                <p>3D visualization of atmospheric circulation patterns.</p>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-    </div>
-</section>
-
-<section class="skills-section fade-in">
-    <h2>Skills</h2>
+    </header>
     
-    <div class="skills-network">
-        <!-- Geoinformation in the center (STATIONARY) -->
-        <div class="center-skill">
-            <span class="geo-title">Geoinformation</span>
-            <span class="geo-degree">M.Sc.</span>
-        </div>
-        
-        <!-- SVG for connection lines (will rotate with skills) -->
-        <svg class="connections" viewBox="0 0 600 600">
-            <line x1="300" y1="300" x2="300" y2="30" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-            <line x1="300" y1="300" x2="510" y2="90" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-            <line x1="300" y1="300" x2="570" y2="300" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-            <line x1="300" y1="300" x2="510" y2="510" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-            <line x1="300" y1="300" x2="300" y2="570" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-            <line x1="300" y1="300" x2="90" y2="510" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-            <line x1="300" y1="300" x2="30" y2="300" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-            <line x1="300" y1="300" x2="90" y2="90" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-            <line x1="300" y1="300" x2="400" y2="60" stroke="#589632" stroke-width="2" stroke-dasharray="5,5" />
-        </svg>
-        
-        <!-- Rotating Orbit Container -->
-        <div class="orbit-container">
-            <!-- Skills with Font Awesome icons - ALL WILL ROTATE -->
-            <div class="skill python" style="top: 30px; left: 300px;">
-                <i class="fab fa-python"></i>
-                <span>Python</span>
-            </div>
-            
-            <div class="skill qgis" style="top: 90px; left: 510px;">
-                <i class="fas fa-map"></i>
-                <span>QGIS</span>
-            </div>
-            
-            <div class="skill arcgis" style="top: 300px; left: 570px;">
-                <i class="fas fa-globe"></i>
-                <span>ArcGIS</span>
-            </div>
-            
-            <div class="skill geopandas" style="top: 510px; left: 510px;">
-                <i class="fas fa-database"></i>
-                <span>GeoPandas</span>
-            </div>
-            
-            <div class="skill postgis" style="top: 570px; left: 300px;">
-                <i class="fas fa-server"></i>
-                <span>PostGIS</span>
-            </div>
-            
-            <div class="skill network" style="top: 510px; left: 90px;">
-                <i class="fas fa-project-diagram"></i>
-                <span>Network</span>
-            </div>
-            
-            <div class="skill cartography" style="top: 300px; left: 30px;">
-                <i class="fas fa-map-marked-alt"></i>
-                <span>Cartography</span>
-            </div>
-            
-            <div class="skill leaflet" style="top: 90px; left: 90px;">
-                <i class="fas fa-leaf"></i>
-                <span>Leaflet</span>
-            </div>
-            
-            <div class="skill project" style="top: 60px; left: 400px;">
-                <i class="fas fa-tasks"></i>
-                <span>Project Mgmt</span>
-            </div>
-        </div>
-    </div>
-</section>
+    <section class="intro fade-in">
+        <p>
+            Aus Leidenschaft für Geodaten und Technologie möchte ich mit meiner Expertise in Geoinformation, Python,
+            ArcGIS, QGIS und Systemadministration dazu beitragen, GIS-Systeme <span class="highlight">effizienter</span> zu gestalten und
+            datenbasierte Entscheidungen zu unterstützen.
+        </p>
+    </section>
 
+    <section id="projects" class="projects fade-in">
+        <h2>Beispiele Projekte</h2>
+        <div class="grid">
 
-<!-- Contact Section with Map -->
-<section class="contact-section fade-in">
-    <h2>Get In Touch</h2>
-    
-    <div class="contact-container">
-        <!-- Left side - Message and contact info -->
-        <div class="contact-info">
-            <div class="collaboration-message">
-                <i class="fas fa-handshake"></i>
-                <h3>Let's Collaborate!</h3>
-                <p class="message-text">
-                    Bitte zögern Sie nicht, mich jederzeit zu kontaktieren, wenn Sie Fragen zu Kooperationen oder Projekten im Bereich Geodaten, 
-                    räumliche Analysen oder Datenvisualisierung haben.
-                    
-                </p>
+            <!-- Tilemap Project -->
+            <div class="card"
+                data-static="images/tilemap.gif"
+                data-gif="images/tilemap.gif"
+                onclick="window.open('https://github.com/prakash023/TileMap-Generator-', '_blank')">
+                <img src="images/tilemap.gif" alt="Tilemap_Generator">
+                <div class="overlay">
+                    <h3>GeoJSON to Tilemap</h3>
+                    <p>Interactive web application for generating optimized tile grids from polygon GeoJSON datasets (Flask + Leaflet).</p>
+                </div>
+            </div>
+
+            <!-- Ahrensfelde -->
+            <div class="card" onclick="openModal('ahrensfelde')">
+                <img src="images/Ahrensfelde Berg.png" alt="Ahrensfelde Terrain">
+                <div class="overlay">
+                    <h3>Ahrensfelde Terrain Analysis</h3>
+                    <p>Digital elevation modelling & contour interpretation</p>
+                </div>
+            </div>
+
+            <!-- Malta -->
+            <div class="card" onclick="openModal('malta')">
+                <img src="images/Malta_CellTower_Option3_Preview.png" alt="Malta Urban Density">
+                <div class="overlay">
+                    <h3>Malta Urban Density</h3>
+                    <p>Hexagonal spatial aggregation of OSM building data</p>
+                </div>
+            </div>
+
+            <!-- Germany Railway -->
+            <div class="card" onclick="openModal('germanyrail')">
+                <img src="images/Eisenbahnnetz-Deutschland2025.png" alt="Germany Railway">
+                <div class="overlay">
+                    <h3>Germany Railway Network</h3>
+                    <p>National infrastructure density modelling</p>
+                </div>
+            </div>
+
+            <!-- Walkability -->
+            <div class="card" onclick="openModal('walkability')">
+                <img src="images/Walkability.png" alt="Walkability">
+                <div class="overlay">
+                    <h3>Urban Walkability</h3>
+                    <p>Accessibility modelling using network analysis</p>
+                </div>
+            </div>
+
+            <!-- Nepal -->
+            <div class="card" onclick="openModal('nepal')">
+                <img src="images/Nepal_Nationalparks and its connection wth main Roadway.png" alt="Nepal">
+                <div class="overlay">
+                    <h3>Nepal National Parks</h3>
+                    <p>Protected areas & infrastructure interaction</p>
+                </div>
+            </div>
+
+            <!-- Kathmandu -->
+            <div class="card" onclick="openModal('kathmandu')">
+                <img src="images/Kathmandu_Urban.jpeg" alt="Kathmandu">
+                <div class="overlay">
+                    <h3>Kathmandu Urban Mapping</h3>
+                    <p>Landmark-based cartographic representation</p>
+                </div>
+            </div>
+
+            <!-- Earth Air Flow -->
+            <div class="card"
+                data-static="images/Air_earthwithin.gif"
+                data-gif="images/Air_earthwithin.gif"
+                onclick="openModal('earthflow')">
+                <img src="images/Air_earthwithin.gif" alt="Earth Air Flow 3D">
+                <div class="overlay">
+                    <h3>Earth Air Flow 3D</h3>
+                    <p>3D visualization of atmospheric circulation patterns.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section fade-in">
+        <h2>Skills</h2>
+        <div class="skills-network">
+            
+            <!-- NO SVG LINES - Removed as requested -->
+            
+            <div class="center-skill">
+                <span class="geo-title">Geoinformation</span>
+                <span class="geo-degree">M.Sc.</span>
             </div>
             
-            <div class="direct-contact">
-                <h4>Connect</h4>
-                <div class="social-icons">
-                    <a href="mailto:prakash023@gmail.com" class="social-icon" target="_blank">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/neup/" class="social-icon" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/prakash023" class="social-icon" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
+            <div class="orbit-container">
+                <div class="skill python">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill qgis">
+                    <i class="fas fa-map"></i>
+                    <span>QGIS</span>
+                </div>
+                <div class="skill arcgis">
+                    <i class="fas fa-globe"></i>
+                    <span>ArcGIS</span>
+                </div>
+                <div class="skill geopandas">
+                    <i class="fas fa-database"></i>
+                    <span>GeoPandas</span>
+                </div>
+                <div class="skill postgis">
+                    <i class="fas fa-server"></i>
+                    <span>PostGIS</span>
+                </div>
+                <div class="skill network">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Network</span>
+                </div>
+                <div class="skill cartography">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Cartography</span>
+                </div>
+                <div class="skill leaflet">
+                    <i class="fas fa-leaf"></i>
+                    <span>Leaflet</span>
+                </div>
+                <div class="skill project">
+                    <i class="fas fa-tasks"></i>
+                    <span>Project Mgmt</span>
                 </div>
             </div>
         </div>
-        
-        <!-- Right side - Map with Berlin location -->
-        <div class="map-wrapper">
-            <div id="berlin-map"></div>
-            <div class="location-badge">
-                <i class="fas fa-map-pin"></i> Berlin, Deutschland
+    </section>
+
+    <section id="contact" class="contact-section fade-in">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="collaboration-message">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Let's Collaborate!</h3>
+                    <p class="message-text">
+                        Bitte zögern Sie nicht, mich jederzeit zu kontaktieren, wenn Sie Fragen zu Kooperationen oder Projekten im Bereich Geodaten,
+                        räumliche Analysen oder Datenvisualisierung haben.
+                    </p>
+                </div>
+                <div class="direct-contact">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="mailto:prakash023@gmail.com" class="social-icon" target="_blank">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/neup/" class="social-icon" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/prakash023" class="social-icon" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-wrapper">
+                <div id="berlin-map"></div>
+                <div class="location-badge">
+                    <i class="fas fa-map-pin"></i> Berlin, Deutschland
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="projectModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-text">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+                <p id="modalTools"></p>
+                <a id="modalLink" href="#" target="_blank">View on GitHub</a>
             </div>
         </div>
     </div>
-</section>
 
-<div class="modal" id="projectModal" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img id="modalImage" src="" alt="">
-        <div class="modal-text">
-            <h3 id="modalTitle"></h3>
-            <p id="modalDescription"></p>
-            <p id="modalTools"></p>
-            <a id="modalLink" href="#" target="_blank">View on GitHub</a>
+    <footer>
+        <p>© 2026 Prakash Neupane | Geoinformation M.Sc.</p>
+        <div class="footer-links">
+            <a href="mailto:prakash023@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/neup/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/prakash023" target="_blank"><i class="fab fa-github"></i></a>
         </div>
-    </div>
+    </footer>
 
-    
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Main JavaScript -->
+    <script src="javascript.js"></script>
 
-</div>
-
-<footer>
-    <p>© 2026 Prakash Neupane | Geoinformation M.Sc.</p>
-    <div class="footer-links">
-        <a href="mailto:prakash023@gmail.com"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.linkedin.com/in/neup/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/prakash023" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-</footer>
-
-<script src="script.js"></script>
-
-<!-- Map initialization script -->
-<script>
-    // Wait for the page to fully load
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM loaded, initializing map...');
-        
-        // Make sure Leaflet is loaded
-        if (typeof L === 'undefined') {
-            console.error('Leaflet not loaded!');
-            return;
-        }
-        
-        // Berlin coordinates
-        const berlinLat = 52.5200;
-        const berlinLng = 13.4050;
-        
-        // Get map element
-        const mapElement = document.getElementById('berlin-map');
-        if (!mapElement) {
-            console.error('Map element not found!');
-            return;
-        }
-        
-        // Clear any existing map content
-        mapElement.innerHTML = '';
-        
-        // Initialize map with zoom level 11 (shows Berlin and surroundings)
-        const map = L.map('berlin-map').setView([berlinLat, berlinLng], 11);
-        
-        // Add OpenStreetMap tiles (light theme)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 19,
-            minZoom: 2
-        }).addTo(map);
-        
-        // Add green marker (to match your theme)
-        const greenIcon = L.icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-        
-        const marker = L.marker([berlinLat, berlinLng], { icon: greenIcon }).addTo(map);
-        marker.bindPopup('<b>Berlin, Deutschland</b><br>📍 Based here').openPopup();
-        
-        // Force map to recalculate dimensions after a short delay
+    <!-- TEMPORARY DEBUG SCRIPT - REMOVE AFTER TESTING -->
+    <script>
+        console.log("Debug: Checking map...");
         setTimeout(function() {
-            map.invalidateSize();
-            console.log('Map invalidateSize called');
-        }, 300);
-        
-        // Also recalculate on window resize
-        window.addEventListener('resize', function() {
-            map.invalidateSize();
-        });
-        
-        console.log('OSM map initialized successfully at zoom level 11!');
-    });
-</script>
+            const mapDiv = document.getElementById('berlin-map');
+            console.log("Map div found:", mapDiv);
+            console.log("Map div dimensions:", mapDiv.clientWidth, "x", mapDiv.clientHeight);
+            console.log("Leaflet available:", typeof L !== 'undefined');
+            
+            // Force manual map creation
+            if (mapDiv && typeof L !== 'undefined') {
+                const testMap = L.map('berlin-map').setView([52.52, 13.405], 11);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(testMap);
+                L.marker([52.52, 13.405]).addTo(testMap).bindPopup('Berlin').openPopup();
+                console.log("Test map created");
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
-
