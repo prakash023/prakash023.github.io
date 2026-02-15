@@ -92,42 +92,92 @@ window.addEventListener("click", function(event) {
     }
 });
 
-/* ===============================
-   LEAFLET MAP 
+/* ================================
+   LEAFLET MAP - IMPROVED FOR MOBILE
 ================================= */
-/* Initialize the Map and fix the map to Berlin*/
+
 function initMap() {
     const mapElement = document.getElementById("berlin-map");
     if (!mapElement || typeof L === "undefined") return;
 
+    // Clear any existing map
     mapElement.innerHTML = '';
 
+    // Ensure the map container has dimensions
+    if (mapElement.clientWidth === 0 || mapElement.clientHeight === 0) {
+        console.log("Map container has zero size, waiting...");
+        setTimeout(initMap, 200);
+        return;
+    }
+
+    // Create map with explicit size handling
     const map = L.map("berlin-map", {
-        dragging: false,        // Disable dragging
-        touchZoom: false,       // Disable touch zoom
-        scrollWheelZoom: false, // Disable scroll wheel zoom
-        doubleClickZoom: false, // Disable double click zoom
-        boxZoom: false,         // Disable box zoom
-        tap: false,             // Disable tap on mobile
-        keyboard: false,        // Disable keyboard controls
-        zoomControl: false      // Remove zoom controls
+        dragging: true,              // Enable dragging on mobile
+        touchZoom: true,              // Enable touch zoom on mobile
+        scrollWheelZoom: false,
+        doubleClickZoom: true,
+        boxZoom: true,
+        tap: true,
+        keyboard: false,
+        zoomControl: true,            // Enable zoom controls on mobile
+        attributionControl: true
     }).setView([52.5200, 13.4050], 11);
     
+    // Add tile layer
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '© OpenStreetMap'
+        attribution: '© OpenStreetMap',
+        maxZoom: 19,
+        detectRetina: true
     }).addTo(map);
     
+    // Add marker
     L.marker([52.5200, 13.4050]).addTo(map)
         .bindPopup("<b>Berlin, Deutschland</b><br>📍 Based here")
         .openPopup();
     
-    setTimeout(() => map.invalidateSize(), 200);
+    // Force map to recalculate size after a short delay
+    setTimeout(() => {
+        map.invalidateSize(true);
+        console.log("Map size invalidated");
+    }, 300);
+
+    // Handle orientation changes
+    window.addEventListener('orientationchange', function() {
+        setTimeout(() => {
+            map.invalidateSize(true);
+        }, 300);
+    });
+
+    // Handle resize events
+    window.addEventListener('resize', function() {
+        setTimeout(() => {
+            map.invalidateSize(true);
+        }, 100);
+    });
+
+    return map;
 }
 
+/* ================================
+   MOBILE MAP FIX
+================================= */
 
+function ensureMapLoads() {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        console.log("Mobile device detected, ensuring map loads...");
+        // Force map to initialize after DOM is fully ready
+        setTimeout(() => {
+            if (document.getElementById("berlin-map")) {
+                // Clear and reinitialize map
+                initMap();
+            }
+        }, 500);
+    }
+}
 
 /* ===============================
-   SIMPLE BUT ATTRACTIVE TOP ANIMATION - GUARANTEED TO WORK
+   SIMPLE BUT ATTRACTIVE TOP ANIMATION
 ================================= */
 
 function initTopAnimation() {
@@ -138,8 +188,8 @@ function initTopAnimation() {
     const ctx = canvas.getContext("2d");
 
     function resizeCanvas() {
-        canvas.width = window.innerWidth * 0.5; // 50% of screen width
-        canvas.height = hero.offsetHeight; // Match the height of the hero section
+        canvas.width = window.innerWidth * 0.5;
+        canvas.height = hero.offsetHeight;
         console.log("Canvas resized:", canvas.width, "x", canvas.height);
     }
 
@@ -151,7 +201,7 @@ function initTopAnimation() {
 
     window.addEventListener("mousemove", (e) => {
         const rect = canvas.getBoundingClientRect();
-        mouseX = e.clientX - rect.left; // Ensure correct cursor matching
+        mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
     });
 
@@ -163,7 +213,7 @@ function initTopAnimation() {
 
     // Function to draw contour lines based on Perlin noise
     function drawContours() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous frame
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         ctx.lineWidth = 1.2;
 
@@ -174,7 +224,7 @@ function initTopAnimation() {
             // Loop through each point in the row and generate noise
             for (let x = 0; x < canvas.width; x += 5) {
                 const n = noise(x + time * 10, y);
-                const offset = n * 30; // Elevation offset based on noise
+                const offset = n * 30;
                 const py = y + offset;
 
                 // Move to the first point
@@ -186,61 +236,35 @@ function initTopAnimation() {
             const colorFactor = Math.sin(time * 0.01) * 0.5 + 0.5;
             ctx.strokeStyle = `rgba(${Math.floor(255 * colorFactor)}, ${Math.floor(255 * (1 - colorFactor))}, 255, 0.5)`;
 
-            ctx.stroke(); // Draw the contour line
+            ctx.stroke();
         }
     }
 
     // Function to animate the contour lines
     function animate() {
-        // Increase the time to animate the contours
         time += 0.05;
-
-        // Draw the contour lines based on noise and time
         drawContours();
-
-        // Repeat the animation loop
         requestAnimationFrame(animate);
     }
 
-    // Start the animation
     animate();
     console.log("Animation started!");
 
-    // Initial call to resize the canvas
     resizeCanvas();
 }
 
-/* ===============================
+/* ================================
    INITIALIZE EVERYTHING
 ================================= */
 
-// Add touch event support for mobile
-function initMobileSupport() {
-    // Fix for modal closing when clicking outside on mobile
-    const modal = document.getElementById("projectModal");
-    if (modal) {
-        modal.addEventListener('touchstart', function(event) {
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
-    }
-    
-    // Ensure map loads correctly on mobile
-    window.addEventListener('orientationchange', function() {
-        setTimeout(function() {
-            if (typeof map !== 'undefined') {
-                map.invalidateSize();
-            }
-        }, 200);
-    });
-}
-
-// Call this in your DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM loaded, initializing...");
     initMap();
     initTopAnimation();
-    initMobileSupport();
+    ensureMapLoads();
 });
 
+// Also run when window loads (ensures all resources are ready)
+window.addEventListener("load", function() {
+    ensureMapLoads();
+});

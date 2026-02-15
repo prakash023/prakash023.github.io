@@ -361,16 +361,16 @@ h2 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Fixed circle layout with responsive translation */
-.skill.python      { transform: rotate(0deg)   translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(0deg); }
-.skill.qgis        { transform: rotate(40deg)  translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(-40deg); }
-.skill.arcgis      { transform: rotate(80deg)  translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(-80deg); }
-.skill.geopandas   { transform: rotate(120deg) translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(-120deg); }
-.skill.postgis     { transform: rotate(160deg) translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(-160deg); }
-.skill.network     { transform: rotate(200deg) translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(-200deg); }
-.skill.cartography { transform: rotate(240deg) translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(-240deg); }
-.skill.leaflet     { transform: rotate(280deg) translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(-280deg); }
-.skill.project     { transform: rotate(320deg) translate(calc(min(90vw, 600px) / 2 - 110px)) rotate(-320deg); }
+/* Desktop circle layout */
+.skill.python      { transform: rotate(0deg)   translate(220px) rotate(0deg); }
+.skill.qgis        { transform: rotate(40deg)  translate(220px) rotate(-40deg); }
+.skill.arcgis      { transform: rotate(80deg)  translate(220px) rotate(-80deg); }
+.skill.geopandas   { transform: rotate(120deg) translate(220px) rotate(-120deg); }
+.skill.postgis     { transform: rotate(160deg) translate(220px) rotate(-160deg); }
+.skill.network     { transform: rotate(200deg) translate(220px) rotate(-200deg); }
+.skill.cartography { transform: rotate(240deg) translate(220px) rotate(-240deg); }
+.skill.leaflet     { transform: rotate(280deg) translate(220px) rotate(-280deg); }
+.skill.project     { transform: rotate(320deg) translate(220px) rotate(-320deg); }
 
 /* Skill colors */
 .skill.python { background: #6c5ce7; color: white; }
@@ -651,17 +651,22 @@ footer {
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 15px;
-        padding: 8px 16px;
+        gap: 10px;
+        padding: 6px 12px;
         background: rgba(0,0,0,0.8);
         border-radius: 30px;
         backdrop-filter: blur(8px);
         z-index: 1000;
+        white-space: nowrap;
     }
 
     .top-nav a {
-        font-size: 0.8rem;
-        padding: 6px 10px;
+        font-size: 0.7rem;
+        padding: 5px 8px;
+        color: #589632;
+        background: rgba(255,255,255,0.1);
+        border-radius: 20px;
+        border: none;
     }
 
     /* Hero adjustments */
@@ -670,7 +675,11 @@ footer {
     }
     
     .hero h1 {
-        font-size: clamp(28px, 5vw, 48px);
+        font-size: clamp(24px, 6vw, 32px);
+    }
+
+    .hero p {
+        font-size: 0.9rem;
     }
 
     /* Intro section */
@@ -678,99 +687,255 @@ footer {
         padding: 40px 20px;
     }
     
+    .intro p {
+        font-size: 0.95rem;
+    }
+
     /* Projects section */
     .projects {
-        padding: 60px 20px;
+        padding: 40px 15px;
+    }
+    
+    .projects h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     /* Contact section */
     .contact-section {
-        padding: 60px 20px;
+        padding: 40px 15px;
+    }
+    
+    .contact-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
     }
     
     .contact-container {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 20px;
     }
     
     .contact-info {
         height: auto;
-        min-height: 450px;
-        padding: 30px;
+        min-height: auto;
+        padding: 25px;
     }
     
-    .map-wrapper {
-        height: 400px;
+    .collaboration-message i {
+        font-size: 2.5rem;
     }
     
-    .social-icon {
-        width: 55px;
-        height: 55px;
-        font-size: 1.5rem;
+    .collaboration-message h3 {
+        font-size: 1.3rem;
     }
     
-    .contact-links {
-        gap: 15px;
-    }
-    
-    .contact-link {
-        padding: 6px 15px;
+    .message-text {
         font-size: 0.9rem;
     }
     
-    /* Skills adjustments */
-    .center-skill {
-        width: 130px;
-        height: 130px;
-        font-size: 1rem;
+    /* Map container fixes for mobile */
+    .map-wrapper {
+        height: 300px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        border-radius: 15px;
+    }
+
+    #berlin-map {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 300px;
     }
     
-    .skill {
-        width: 85px;
-        height: 85px;
-        font-size: 0.7rem;
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
     }
     
-    .skill i {
+    .contact-links {
+        gap: 10px;
+    }
+    
+    .contact-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* ===== FIXED SKILLS SECTION FOR MOBILE ===== */
+    .skills-section {
+        padding: 40px 15px;
+    }
+
+    .skills-section h2 {
         font-size: 1.5rem;
+        margin-bottom: 30px;
     }
+
+    .skills-network {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .center-skill {
+        width: 100px;
+        height: 100px;
+        font-size: 0.9rem;
+    }
+
+    .geo-title {
+        font-size: 0.75rem;
+    }
+
+    .geo-degree {
+        font-size: 0.65rem;
+    }
+
+    .orbit-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .skill {
+        width: 60px;
+        height: 60px;
+    }
+
+    .skill i {
+        font-size: 1.3rem;
+        margin-bottom: 2px;
+    }
+
+    .skill span {
+        font-size: 0.55rem;
+        font-weight: 500;
+    }
+
+    /* Mobile circle layout - properly spaced */
+    .skill.python      { transform: rotate(0deg)   translate(100px) rotate(0deg); }
+    .skill.qgis        { transform: rotate(40deg)  translate(100px) rotate(-40deg); }
+    .skill.arcgis      { transform: rotate(80deg)  translate(100px) rotate(-80deg); }
+    .skill.geopandas   { transform: rotate(120deg) translate(100px) rotate(-120deg); }
+    .skill.postgis     { transform: rotate(160deg) translate(100px) rotate(-160deg); }
+    .skill.network     { transform: rotate(200deg) translate(100px) rotate(-200deg); }
+    .skill.cartography { transform: rotate(240deg) translate(100px) rotate(-240deg); }
+    .skill.leaflet     { transform: rotate(280deg) translate(100px) rotate(-280deg); }
+    .skill.project     { transform: rotate(320deg) translate(100px) rotate(-320deg); }
     
     /* Modal adjustments */
     .modal {
-        padding: 20px;
+        padding: 15px;
     }
     
     .modal-content {
         flex-direction: column;
         padding: 20px;
+        gap: 15px;
     }
     
     .modal-content img {
         width: 100%;
-        max-height: 200px;
+        max-height: 180px;
     }
     
     .modal-text {
         width: 100%;
     }
-}
 
-/* ===== SMALLER MOBILE (max-width: 500px) ===== */
-@media (max-width: 500px) {
-    .center-skill {
-        width: 100px;
-        height: 100px;
+    .modal-text h3 {
+        font-size: 1.2rem;
+    }
+
+    .modal-text p {
         font-size: 0.85rem;
     }
-    
-    .skill {
-        width: 70px;
-        height: 70px;
+
+    .close {
+        right: 15px;
+        top: 10px;
+        font-size: 30px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 30px 15px;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+}
+
+/* ===== SMALLER MOBILE (max-width: 480px) ===== */
+@media (max-width: 480px) {
+    .top-nav {
+        gap: 5px;
+        padding: 5px 8px;
+    }
+
+    .top-nav a {
+        font-size: 0.6rem;
+        padding: 4px 6px;
+    }
+
+    /* Even smaller skills for very small phones */
+    .skills-network {
+        width: 260px;
+        height: 260px;
+    }
+
+    .center-skill {
+        width: 85px;
+        height: 85px;
+        font-size: 0.8rem;
+    }
+
+    .geo-title {
+        font-size: 0.7rem;
+    }
+
+    .geo-degree {
         font-size: 0.6rem;
     }
-    
+
+    .skill {
+        width: 50px;
+        height: 50px;
+    }
+
     .skill i {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+    }
+
+    .skill span {
+        font-size: 0.5rem;
+    }
+
+    /* Smaller circle for very small screens */
+    .skill.python      { transform: rotate(0deg)   translate(85px) rotate(0deg); }
+    .skill.qgis        { transform: rotate(40deg)  translate(85px) rotate(-40deg); }
+    .skill.arcgis      { transform: rotate(80deg)  translate(85px) rotate(-80deg); }
+    .skill.geopandas   { transform: rotate(120deg) translate(85px) rotate(-120deg); }
+    .skill.postgis     { transform: rotate(160deg) translate(85px) rotate(-160deg); }
+    .skill.network     { transform: rotate(200deg) translate(85px) rotate(-200deg); }
+    .skill.cartography { transform: rotate(240deg) translate(85px) rotate(-240deg); }
+    .skill.leaflet     { transform: rotate(280deg) translate(85px) rotate(-280deg); }
+    .skill.project     { transform: rotate(320deg) translate(85px) rotate(-320deg); }
+
+    .contact-link {
+        min-width: 90px;
+        font-size: 0.7rem;
+        padding: 5px 8px;
     }
 }
 
