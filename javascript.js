@@ -221,10 +221,33 @@ document.addEventListener("DOMContentLoaded", function() {
    INITIALIZE EVERYTHING
 ================================= */
 
+// Add touch event support for mobile
+function initMobileSupport() {
+    // Fix for modal closing when clicking outside on mobile
+    const modal = document.getElementById("projectModal");
+    if (modal) {
+        modal.addEventListener('touchstart', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
+    
+    // Ensure map loads correctly on mobile
+    window.addEventListener('orientationchange', function() {
+        setTimeout(function() {
+            if (typeof map !== 'undefined') {
+                map.invalidateSize();
+            }
+        }, 200);
+    });
+}
+
+// Call this in your DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM loaded, initializing...");
     initMap();
     initTopAnimation();
+    initMobileSupport();
 });
-
 

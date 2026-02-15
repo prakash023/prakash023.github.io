@@ -1,3 +1,8 @@
+:root {
+    --primary-green: #589632;
+    --dark-bg: #0e1117;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -193,7 +198,7 @@ h2 {
 
 /* Title styling */
 .hero h1 {
-    font-size: 48px;
+    font-size: clamp(28px, 5vw, 48px);
     margin-bottom: 10px;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -389,11 +394,10 @@ h2 {
 
 /* Main container */
 .skills-network {
-    position: relative;
-    width: min(80vw, 600px);
-    height: min(80vw, 600px);
-    margin: 0 auto;
+    width: min(90vw, 600px);
+    height: min(90vw, 600px);
 }
+
 
 /* Center circle */
 .center-skill {
@@ -780,8 +784,9 @@ footer {
     }
     
     .hero h1 {
-        font-size: 36px;
+        font-size: clamp(28px, 5vw, 48px);
     }
+
     
     .intro {
         padding: 40px 20px;
