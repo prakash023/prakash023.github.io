@@ -74,7 +74,7 @@ function closeModal() {
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 window.addEventListener("click", (e) => { if (e.target === document.getElementById("projectModal")) closeModal(); });
 
-// Map initialization - SIMPLE AND DIRECT
+// Map initialization
 function initMap() {
     console.log("Initializing map...");
     
@@ -83,23 +83,18 @@ function initMap() {
     if (typeof L === 'undefined') { console.error("Leaflet not loaded"); return; }
     
     try {
-        // Create map
         const map = L.map('berlin-map').setView([52.52, 13.405], 11);
         
-        // Add tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap'
         }).addTo(map);
         
-        // Add marker
         L.marker([52.52, 13.405]).addTo(map)
             .bindPopup('<b>Berlin, Deutschland</b><br>📍 Based here')
             .openPopup();
         
-        // Force resize
-        setTimeout(() => map.invalidateSize(), 200);
-        
-        console.log("Map created successfully!");
+        setTimeout(() => map.invalidateSize(), 300);
+        console.log("Map created!");
         return map;
     } catch (error) {
         console.error("Map error:", error);
@@ -152,13 +147,25 @@ function initTopAnimation() {
     draw();
 }
 
-// Initialize everything
+// Initialize
 document.addEventListener("DOMContentLoaded", function() {
     initTopAnimation();
     setTimeout(initMap, 500);
 });
 
 window.addEventListener("load", function() {
-    setTimeout(initMap, 100);
+    setTimeout(initMap, 200);
     setTimeout(initMap, 1000);
+});
+
+// Force map on mobile orientation change
+window.addEventListener('orientationchange', function() {
+    setTimeout(() => {
+        const map = document.getElementById('berlin-map');
+        if (map && map._leaflet_id) {
+            map._leaflet_map.invalidateSize();
+        } else {
+            initMap();
+        }
+    }, 300);
 });
