@@ -159,13 +159,26 @@ window.addEventListener("load", function() {
 });
 
 // Force map on mobile orientation change
-window.addEventListener('orientationchange', function() {
-    setTimeout(() => {
-        const map = document.getElementById('berlin-map');
-        if (map && map._leaflet_id) {
-            map._leaflet_map.invalidateSize();
-        } else {
-            initMap();
-        }
-    }, 300);
+// Make sure your map initialization looks something like this:
+document.addEventListener('DOMContentLoaded', function() {
+    var map = L.map('berlin-map', {
+        center: [52.5200, 13.4050],
+        zoom: 13,
+        zoomControl: true,
+        scrollWheelZoom: true, // Enable scroll wheel zoom
+        dragging: true, // Enable dragging
+        touchZoom: true, // Enable touch zoom
+        doubleClickZoom: true,
+        boxZoom: true,
+        tap: true // Enable tap for mobile
+    });
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+    
+    // Add a marker
+    L.marker([52.5200, 13.4050]).addTo(map)
+        .bindPopup('Berlin, Germany')
+        .openPopup();
 });
