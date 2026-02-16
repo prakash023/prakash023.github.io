@@ -89,6 +89,7 @@ section {
 h2 {
     text-align: center;
     margin-bottom: 30px;
+    font-size: 2rem;
 }
 
 /* ===== FADE IN ANIMATION ===== */
@@ -301,12 +302,7 @@ h2 {
     font-size: 0.9rem;
 }
 
-/* ===== SKILLS SECTION ===== */
-/* ==============================
-/* ==============================
-   SKILLS SECTION – BUBBLE CLUSTER
-============================== */
-
+/* ===== SKILLS SECTION - FLEXBOX VERSION ===== */
 .skills-section {
     padding: 100px 20px;
     background: #0e1117;
@@ -319,18 +315,18 @@ h2 {
     margin-bottom: 60px;
 }
 
-/* Container */
+/* Layout container - FLEXBOX */
 .skills-network {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
 }
 
-/* Base Bubble */
+/* Base bubble */
 .skill {
     border-radius: 50%;
     display: flex;
@@ -338,18 +334,20 @@ h2 {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 15px;
+    padding: 20px;
     color: white;
     font-weight: 600;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 /* Sizes */
 .skill.center {
-    width: 170px;
-    height: 170px;
+    width: 180px;
+    height: 180px;
     background: linear-gradient(135deg, #589632, #74a83d);
-    box-shadow: 0 10px 30px rgba(88,150,50,0.4);
+    box-shadow: 0 12px 35px rgba(88,150,50,0.4);
+    font-size: 1.1rem;
 }
 
 .skill.large {
@@ -367,35 +365,35 @@ h2 {
 .skill.small {
     width: 90px;
     height: 90px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
 }
 
-/* Clean GIS Color Palette */
-.skill.python { background: #601abc; }
+/* Professional GIS Color Palette */
+.skill.python { background: #1abc9c; }
 .skill.qgis { background: #2ecc71; }
 .skill.arcgis { background: #2980b9; }
 .skill.geopandas { background: #16a085; }
 .skill.postgis { background: #d35400; }
 .skill.leaflet { background: #27ae60; }
-.skill.Network Analysis { background: #8e44ad; }
+.skill.network-analysis { background: #8e44ad; }
 .skill.cartography { background: #34495e; }
 .skill.project { background: #f39c12; }
 
 .skill i {
-    font-size: 1.6rem;
-    margin-bottom: 6px;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
 }
 
 .skill span {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    line-height: 1.3;
 }
 
 /* Hover */
 .skill:hover {
     transform: scale(1.08);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
-
 
 /* ===== CONTACT SECTION ===== */
 .contact-section {
@@ -649,7 +647,7 @@ footer {
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 10px;
+        gap: 8px;
         padding: 6px 12px;
         background: rgba(0,0,0,0.8);
         border-radius: 30px;
@@ -669,7 +667,7 @@ footer {
 
     /* Hero adjustments */
     .hero {
-        height: 100vh;
+        height: 80vh;
     }
     
     .hero h1 {
@@ -702,6 +700,54 @@ footer {
     .grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+    
+    /* Skills section - Mobile Flexbox */
+    .skills-section {
+        padding: 60px 15px;
+    }
+
+    .skills-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+    }
+
+    .skills-network {
+        gap: 15px;
+    }
+
+    /* Adjust sizes for mobile */
+    .skill.center {
+        width: 140px;
+        height: 140px;
+        font-size: 1rem;
+    }
+
+    .skill.large {
+        width: 120px;
+        height: 120px;
+        font-size: 0.9rem;
+    }
+
+    .skill.medium {
+        width: 100px;
+        height: 100px;
+        font-size: 0.8rem;
+    }
+
+    .skill.small {
+        width: 80px;
+        height: 80px;
+        font-size: 0.7rem;
+    }
+
+    .skill i {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+
+    .skill span {
+        font-size: 0.7rem;
     }
     
     /* Contact section */
@@ -767,69 +813,6 @@ footer {
         font-size: 0.8rem;
     }
     
-    /* ===== FIXED SKILLS SECTION FOR MOBILE ===== */
-    .skills-section {
-        padding: 40px 15px;
-    }
-
-    .skills-section h2 {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
-    }
-
-    .skills-network {
-        width: 300px;
-        height: 300px;
-        margin: 0 auto;
-        position: relative;
-    }
-
-    .center-skill {
-        width: 100px;
-        height: 100px;
-        font-size: 0.9rem;
-    }
-
-    .geo-title {
-        font-size: 0.75rem;
-    }
-
-    .geo-degree {
-        font-size: 0.65rem;
-    }
-
-    .orbit-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-
-    .skill {
-        width: 60px;
-        height: 60px;
-    }
-
-    .skill i {
-        font-size: 1.3rem;
-        margin-bottom: 2px;
-    }
-
-    .skill span {
-        font-size: 0.55rem;
-        font-weight: 500;
-    }
-
-    /* Mobile circle layout - properly spaced */
-    .skill.python      { transform: rotate(0deg)   translate(100px) rotate(0deg); }
-    .skill.qgis        { transform: rotate(40deg)  translate(100px) rotate(-40deg); }
-    .skill.arcgis      { transform: rotate(80deg)  translate(100px) rotate(-80deg); }
-    .skill.geopandas   { transform: rotate(120deg) translate(100px) rotate(-120deg); }
-    .skill.postgis     { transform: rotate(160deg) translate(100px) rotate(-160deg); }
-    .skill.network     { transform: rotate(200deg) translate(100px) rotate(-200deg); }
-    .skill.cartography { transform: rotate(240deg) translate(100px) rotate(-240deg); }
-    .skill.leaflet     { transform: rotate(280deg) translate(100px) rotate(-280deg); }
-    .skill.project     { transform: rotate(320deg) translate(100px) rotate(-320deg); }
-    
     /* Modal adjustments */
     .modal {
         padding: 15px;
@@ -886,49 +869,42 @@ footer {
         padding: 4px 6px;
     }
 
-    /* Even smaller skills for very small phones */
+    /* Even smaller skills */
     .skills-network {
-        width: 260px;
-        height: 260px;
+        gap: 10px;
     }
 
-    .center-skill {
-        width: 85px;
-        height: 85px;
+    .skill.center {
+        width: 120px;
+        height: 120px;
+        font-size: 0.9rem;
+    }
+
+    .skill.large {
+        width: 100px;
+        height: 100px;
         font-size: 0.8rem;
     }
 
-    .geo-title {
+    .skill.medium {
+        width: 85px;
+        height: 85px;
         font-size: 0.7rem;
     }
 
-    .geo-degree {
+    .skill.small {
+        width: 70px;
+        height: 70px;
         font-size: 0.6rem;
     }
 
-    .skill {
-        width: 50px;
-        height: 50px;
-    }
-
     .skill i {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .skill span {
-        font-size: 0.5rem;
+        font-size: 0.6rem;
     }
-
-    /* Smaller circle for very small screens */
-    .skill.python      { transform: rotate(0deg)   translate(85px) rotate(0deg); }
-    .skill.qgis        { transform: rotate(40deg)  translate(85px) rotate(-40deg); }
-    .skill.arcgis      { transform: rotate(80deg)  translate(85px) rotate(-80deg); }
-    .skill.geopandas   { transform: rotate(120deg) translate(85px) rotate(-120deg); }
-    .skill.postgis     { transform: rotate(160deg) translate(85px) rotate(-160deg); }
-    .skill.network     { transform: rotate(200deg) translate(85px) rotate(-200deg); }
-    .skill.cartography { transform: rotate(240deg) translate(85px) rotate(-240deg); }
-    .skill.leaflet     { transform: rotate(280deg) translate(85px) rotate(-280deg); }
-    .skill.project     { transform: rotate(320deg) translate(85px) rotate(-320deg); }
 
     .contact-link {
         min-width: 90px;
@@ -946,4 +922,136 @@ footer {
         transform: none;
         box-shadow: none;
     }
+}
+/* ===== MAP EMERGENCY FIXES ===== */
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 500px !important;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #333333;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    background: #f0f0f0; /* Light background to see container */
+    min-height: 500px;
+    display: block;
+}
+
+#berlin-map {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 500px !important;
+    position: relative;
+    z-index: 1;
+    background: #e0e0e0; /* Temporary background to see if container is there */
+}
+
+.leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 500px !important;
+}
+
+/* Mobile map fixes */
+@media (max-width: 768px) {
+    .map-wrapper {
+        height: 350px !important;
+        min-height: 350px !important;
+    }
+    
+    #berlin-map {
+        height: 350px !important;
+        min-height: 350px !important;
+    }
+    
+    .leaflet-container {
+        height: 350px !important;
+        min-height: 350px !important;
+    }
+}
+/* ===== ULTIMATE MAP FIX - ADD AT THE END ===== */
+.map-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    height: 500px !important;
+    min-height: 500px !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    border: 1px solid #333333 !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
+    background: #f8f8f8 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+}
+
+#berlin-map {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 500px !important;
+    background: #e8e8e8 !important;
+    z-index: 2 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 500px !important;
+    background: #d8d8d8 !important;
+    z-index: 3 !important;
+}
+
+.leaflet-tile-pane {
+    z-index: 2 !important;
+}
+
+.leaflet-overlay-pane {
+    z-index: 3 !important;
+}
+
+.leaflet-marker-pane {
+    z-index: 4 !important;
+}
+
+.leaflet-popup-pane {
+    z-index: 5 !important;
+}
+
+.leaflet-control-container {
+    z-index: 6 !important;
+}
+
+/* Mobile map fixes */
+@media (max-width: 768px) {
+    .map-wrapper {
+        height: 350px !important;
+        min-height: 350px !important;
+    }
+    
+    #berlin-map {
+        height: 350px !important;
+        min-height: 350px !important;
+    }
+    
+    .leaflet-container {
+        height: 350px !important;
+        min-height: 350px !important;
+    }
+}
+
+/* Force hardware acceleration */
+.leaflet-container {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    -webkit-perspective: 1000 !important;
+    perspective: 1000 !important;
 }

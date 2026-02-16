@@ -16,7 +16,7 @@
 </head>
 <body>
 
-    <!-- Top right navigation links - FIXED POSITION -->
+    <!-- Top right navigation links -->
     <div class="top-nav">
         <a href="#projects">Beispiel Projekte</a>
         <a href="#skills">Skills</a>
@@ -51,16 +51,12 @@
     <section id="projects" class="projects fade-in">
         <h2>Beispiele Projekte</h2>
         <div class="grid">
-
             <!-- Tilemap Project -->
-            <div class="card"
-                data-static="images/tilemap.gif"
-                data-gif="images/tilemap.gif"
-                onclick="window.open('https://github.com/prakash023/TileMap-Generator-', '_blank')">
+            <div class="card" onclick="window.open('https://github.com/prakash023/TileMap-Generator-', '_blank')">
                 <img src="images/tilemap.gif" alt="Tilemap_Generator">
                 <div class="overlay">
                     <h3>GeoJSON to Tilemap</h3>
-                    <p>Interactive web application for generating optimized tile grids from polygon GeoJSON datasets (Flask + Leaflet).</p>
+                    <p>Interactive web application for generating optimized tile grids from polygon GeoJSON datasets.</p>
                 </div>
             </div>
 
@@ -119,82 +115,61 @@
             </div>
 
             <!-- Earth Air Flow -->
-            <div class="card"
-                data-static="images/Air_earthwithin.gif"
-                data-gif="images/Air_earthwithin.gif"
-                onclick="openModal('earthflow')">
+            <div class="card" onclick="openModal('earthflow')">
                 <img src="images/Air_earthwithin.gif" alt="Earth Air Flow 3D">
                 <div class="overlay">
                     <h3>Earth Air Flow 3D</h3>
                     <p>3D visualization of atmospheric circulation patterns.</p>
                 </div>
             </div>
-
         </div>
     </section>
 
     <section id="skills" class="skills-section fade-in">
-    <h2>Skills</h2>
-
-    <div class="skills-network">
-
-        <!-- Center -->
-        <div class="skill center">
-            <span class="geo-title">Geoinformation</span>
-            <span class="geo-degree">M.Sc.</span>
+        <h2>Skills</h2>
+        <div class="skills-network">
+            <div class="skill center">
+                <span>Geoinformation</span>
+                <span>M.Sc.</span>
+            </div>
+            <div class="skill large python">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="skill large qgis">
+                <i class="fas fa-map"></i>
+                <span>QGIS</span>
+            </div>
+            <div class="skill large arcgis">
+                <i class="fas fa-globe"></i>
+                <span>ArcGIS</span>
+            </div>
+            <div class="skill medium geopandas">
+                <i class="fas fa-database"></i>
+                <span>GeoPandas</span>
+            </div>
+            <div class="skill medium postgis">
+                <i class="fas fa-server"></i>
+                <span>PostGIS</span>
+            </div>
+            <div class="skill medium leaflet">
+                <i class="fas fa-leaf"></i>
+                <span>Leaflet</span>
+            </div>
+            <div class="skill medium network-analysis">
+                <i class="fas fa-project-diagram"></i>
+                <span>Network Analysis</span>
+            </div>
+            <div class="skill small cartography">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Cartography</span>
+            </div>
+            <div class="skill small project">
+                <i class="fas fa-tasks"></i>
+                <span>Project Mgmt</span>
+            </div>
         </div>
-
-        <!-- Core -->
-        <div class="skill large python">
-            <i class="fab fa-python"></i>
-            <span>Python</span>
-        </div>
-
-        <div class="skill large qgis">
-            <i class="fas fa-map"></i>
-            <span>QGIS</span>
-        </div>
-
-        <!-- Medium -->
-        <div class="skill medium arcgis">
-            <i class="fas fa-globe"></i>
-            <span>ArcGIS</span>
-        </div>
-
-        <div class="skill medium geopandas">
-            <i class="fas fa-database"></i>
-            <span>GeoPandas</span>
-        </div>
-
-        <div class="skill medium postgis">
-            <i class="fas fa-server"></i>
-            <span>PostGIS</span>
-        </div>
-
-        <div class="skill medium leaflet">
-            <i class="fas fa-leaf"></i>
-            <span>Leaflet</span>
-        </div>
-
-        <!-- Small -->
-        <div class="skill small network">
-            <i class="fas fa-project-diagram"></i>
-            <span>Network Analysis</span>
-        </div>
-
-        <div class="skill small cartography">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>Cartography</span>
-        </div>
-
-        <div class="skill large project">
-            <i class="fas fa-tasks"></i>
-            <span>Project Managementmt</span>
-        </div>
-
-    </div>
-</section>
-
+    </section>
 
     <section id="contact" class="contact-section fade-in">
         <h2>Get In Touch</h2>
@@ -224,6 +199,7 @@
                 </div>
             </div>
             
+            <!-- SIMPLE MAP CONTAINER -->
             <div class="map-wrapper">
                 <div id="berlin-map"></div>
                 <div class="location-badge">
@@ -257,27 +233,8 @@
 
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- Main JavaScript -->
+    <!-- Main JavaScript - ONLY ONE SCRIPT -->
     <script src="javascript.js"></script>
-
-    <!-- TEMPORARY DEBUG SCRIPT - REMOVE AFTER TESTING -->
-    <script>
-        console.log("Debug: Checking map...");
-        setTimeout(function() {
-            const mapDiv = document.getElementById('berlin-map');
-            console.log("Map div found:", mapDiv);
-            console.log("Map div dimensions:", mapDiv.clientWidth, "x", mapDiv.clientHeight);
-            console.log("Leaflet available:", typeof L !== 'undefined');
-            
-            // Force manual map creation
-            if (mapDiv && typeof L !== 'undefined') {
-                const testMap = L.map('berlin-map').setView([52.52, 13.405], 11);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(testMap);
-                L.marker([52.52, 13.405]).addTo(testMap).bindPopup('Berlin').openPopup();
-                console.log("Test map created");
-            }
-        }, 1000);
-    </script>
 
 </body>
 </html>
