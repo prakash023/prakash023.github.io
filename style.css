@@ -216,7 +216,7 @@ h2 {
     color: #589632;
 }
 
-/* ===== SKILLS ===== */
+//* ===== SKILLS ===== */
 .skills-section {
     padding: 80px 20px;
     background: #0e1117;
@@ -477,57 +477,11 @@ footer {
 }
 
 /* ===== MOBILE (max-width: 768px) ===== */
+/* ===== MOBILE (max-width: 768px) ===== */
 @media (max-width: 768px) {
-    /* Navigation */
-    .top-nav {
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        right: auto;
-        gap: 8px;
-        padding: 5px 10px;
-        background: rgba(0,0,0,0.8);
-        border-radius: 30px;
-        backdrop-filter: blur(5px);
-    }
+    /* ... existing navigation and hero styles ... */
 
-    .top-nav a {
-        font-size: 0.65rem;
-        padding: 4px 8px;
-        background: rgba(255,255,255,0.1);
-        border-radius: 20px;
-        border: none;
-        color: #589632;
-    }
-
-    /* Hero */
-    .hero {
-        height: 80vh;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero p {
-        font-size: 0.9rem;
-    }
-
-    /* Projects */
-    .projects {
-        padding: 40px 15px;
-    }
-
-    .projects h2 {
-        font-size: 1.5rem;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    /* Skills - SMALLER CIRCLES TO FIT ALL */
+    /* Skills - USING GRID TO FIT ALL CIRCLES */
     .skills-section {
         padding: 40px 15px;
     }
@@ -538,32 +492,33 @@ footer {
     }
 
     .skills-network {
-        gap: 12px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns */
+        gap: 10px;
+        max-width: 100%;
+        padding: 0 5px;
+    }
+
+    .skill {
+        width: auto !important; /* Override fixed widths */
+        height: auto !important;
+        aspect-ratio: 1/1; /* Make them square */
+        padding: 10px 5px;
+        margin: 0 auto;
+        width: 100% !important;
+        max-width: 90px;
     }
 
     .skill.center {
-        width: 100px;
-        height: 100px;
-        font-size: 0.8rem;
-        padding: 10px;
+        grid-column: span 1; /* Normal size */
+        background: linear-gradient(135deg, #589632, #74a83d);
+        max-width: 90px;
     }
 
-    .skill.large {
-        width: 85px;
-        height: 85px;
-        font-size: 0.7rem;
-    }
-
-    .skill.medium {
-        width: 75px;
-        height: 75px;
-        font-size: 0.65rem;
-    }
-
+    .skill.large,
+    .skill.medium,
     .skill.small {
-        width: 65px;
-        height: 65px;
-        font-size: 0.6rem;
+        max-width: 85px;
     }
 
     .skill i {
@@ -572,10 +527,19 @@ footer {
     }
 
     .skill span {
-        display: block;
+        font-size: 0.6rem;
         line-height: 1.2;
+        display: block;
+        word-break: break-word;
     }
 
+    /* Adjust specific skills with long text */
+    .skill.network-analysis span,
+    .skill.cartography span,
+    .skill.project span {
+        font-size: 0.55rem;
+    }
+}
     /* Contact */
     .contact-section {
         padding: 40px 15px;
@@ -649,38 +613,32 @@ footer {
 /* ===== SMALLER MOBILE (max-width: 480px) ===== */
 @media (max-width: 480px) {
     .skills-network {
-        gap: 8px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+
+    .skill {
+        max-width: 75px !important;
     }
 
     .skill.center {
-        width: 85px;
-        height: 85px;
-        font-size: 0.7rem;
-    }
-
-    .skill.large {
-        width: 70px;
-        height: 70px;
-        font-size: 0.6rem;
-    }
-
-    .skill.medium {
-        width: 60px;
-        height: 60px;
-        font-size: 0.55rem;
-    }
-
-    .skill.small {
-        width: 50px;
-        height: 50px;
-        font-size: 0.5rem;
+        max-width: 75px !important;
     }
 
     .skill i {
         font-size: 1rem;
     }
-}
 
+    .skill span {
+        font-size: 0.5rem;
+    }
+
+    .skill.network-analysis span,
+    .skill.cartography span,
+    .skill.project span {
+        font-size: 0.45rem;
+    }
+}
 /* ===== TOUCH DEVICES ===== */
 @media (hover: none) and (pointer: coarse) {
     .card:hover,
