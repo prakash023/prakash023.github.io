@@ -202,7 +202,7 @@ h2 {
 }
 
 .grid {
-    column-count: 3;
+    column-count: 3; /*this one brokes the layout of the project section if changed*/
     column-gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -534,6 +534,35 @@ h2 {
     border-radius: 6px;
 }
 
+.modal-content.kathmandu-full {
+    max-width: 95vw !important;
+    width: 95vw !important;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-content.kathmandu-full .close {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    z-index: 2000;
+}
+
+
+.modal-content.kathmandu-full img {
+    width: 100% !important;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.modal-content.kathmandu-full .modal-text {
+    width: 100%;
+    text-align: center;
+}
+
+
 .close {
     position: absolute;
     right: 30px;
@@ -650,10 +679,12 @@ footer {
     gap: 30px;
 }
 
-/* Special fullscreen layout for Kathmandu */
+/* Full preview layout for selected projects */
 .modal-content.kathmandu-full {
     flex-direction: column;
-    align-items: center;
+    max-width: 98vw;
+    max-height: 98vh;
+    padding: 10px;
 }
 
 .modal-content.kathmandu-full img {

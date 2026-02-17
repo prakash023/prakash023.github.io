@@ -40,7 +40,7 @@ const projects = {
         title: "Kathmandu Urban Mapping",
         description: "Urban landmark cartography with thematic representation.",
         tools: "Tools: QGIS · Cartography",
-        link: "https://github.com/prakash023"
+        
     },
     earthflow: {
         image: "images/Air_earthwithin.gif",
@@ -54,8 +54,25 @@ const projects = {
     title: "Nile Egypt Night Map",
     description: "High-resolution vertical visualization of the Nile corridor showing urban concentration and spatial morphology along the river system.",
     tools: "Tools: Remote Sensing · Cartography · Raster Visualization",
-    link: "https://github.com/prakash023"
+    
     },
+
+    Itahari_c: {
+    image: "images/Itahari_c.png",
+    title: "Itahari Urban",
+    description: "Urban core Itahari visualisation...",
+    tools: "Tools: QGIS · Cartography"
+},
+
+dharan3d: {
+    image: "images/Dharan, Nepal-3D.png",
+    title: "Dharan, Nepal - 3D",
+    description: "3D visualization of Dharan Nepal.",
+    tools: "Tools: QGIS · 3D Modeling"
+}
+
+
+
 
 };
 
@@ -63,6 +80,7 @@ const projects = {
 function openModal(projectKey) {
     const modal = document.getElementById("projectModal");
     const modalContent = document.querySelector(".modal-content");
+    const modalLink = document.getElementById("modalLink");
     const project = projects[projectKey];
 
     if (!project) return;
@@ -72,12 +90,16 @@ function openModal(projectKey) {
     document.getElementById("modalDescription").textContent = project.description;
     document.getElementById("modalTools").textContent = project.tools;
 
-    // Remove special class first (important)
     modalContent.classList.remove("kathmandu-full");
 
-    // Add special layout only for Kathmandu
-    if (projectKey === "kathmandu") {
+    if (!project.link) {
+        // Full preview mode
         modalContent.classList.add("kathmandu-full");
+        modalLink.style.display = "none";
+    } else {
+        // Normal mode
+        modalLink.style.display = "inline-block";
+        modalLink.href = project.link;
     }
 
     modal.style.display = "flex";
@@ -86,10 +108,16 @@ function openModal(projectKey) {
 
 
 
+
 function closeModal() {
-    document.getElementById("projectModal").style.display = "none";
+    const modal = document.getElementById("projectModal");
+    const modalContent = document.querySelector(".modal-content");
+
+    modal.style.display = "none";
+    modalContent.classList.remove("kathmandu-full");
     document.body.style.overflow = "auto";
 }
+
 
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 window.addEventListener("click", (e) => { if (e.target === document.getElementById("projectModal")) closeModal(); });
