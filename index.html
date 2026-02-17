@@ -25,6 +25,7 @@
 
     <header class="hero">
         <canvas id="gridCanvas"></canvas>
+        
         <div class="hero-content">
             <h1>Prakash Neupane</h1>
             <p>Geodatenmanagement | Spatial Analytics & Visualization</p>
@@ -60,6 +61,7 @@
                 </div>
             </div>
 
+
             <!-- Ahrensfelde -->
             <div class="card" onclick="openModal('ahrensfelde')">
                 <img src="images/Ahrensfelde Berg.png" alt="Ahrensfelde Terrain">
@@ -69,7 +71,9 @@
                 </div>
             </div>
 
-            <!-- Malta -->
+        
+
+             <!-- Malta -->
             <div class="card" onclick="openModal('malta')">
                 <img src="images/Malta_CellTower_Option3_Preview.png" alt="Malta Urban Density">
                 <div class="overlay">
@@ -77,6 +81,27 @@
                     <p>Hexagonal spatial aggregation of OSM building data</p>
                 </div>
             </div>
+
+            <!-- Nile Egypt -->
+            <a href="images/nile.jpeg" download class="card card-nile">
+                <img src="images/nile.jpeg" alt="Nile Egypt Night Map">
+                <div class="overlay">
+                    <h3>Nile Egypt Night Map</h3>
+                    <p>Long-format satellite visualization of the Nile corridor.</p>
+                </div>
+            </a>
+
+
+              <!-- Walkability -->
+            <div class="card" onclick="openModal('walkability')">
+                <img src="images/Walkability.png" alt="Walkability">
+                <div class="overlay">
+                    <h3>Urban Walkability</h3>
+                    <p>Accessibility modelling using network analysis</p>
+                </div>   
+            </div>
+
+
 
             <!-- Germany Railway -->
             <div class="card" onclick="openModal('germanyrail')">
@@ -87,23 +112,7 @@
                 </div>
             </div>
 
-            <!-- Walkability -->
-            <div class="card" onclick="openModal('walkability')">
-                <img src="images/Walkability.png" alt="Walkability">
-                <div class="overlay">
-                    <h3>Urban Walkability</h3>
-                    <p>Accessibility modelling using network analysis</p>
-                </div>
-            </div>
-
-            <!-- Nepal -->
-            <div class="card" onclick="openModal('nepal')">
-                <img src="images/Nepal_Nationalparks and its connection wth main Roadway.png" alt="Nepal">
-                <div class="overlay">
-                    <h3>Nepal National Parks</h3>
-                    <p>Protected areas & infrastructure interaction</p>
-                </div>
-            </div>
+            
 
             <!-- Kathmandu -->
             <div class="card" onclick="openModal('kathmandu')">
@@ -111,6 +120,15 @@
                 <div class="overlay">
                     <h3>Kathmandu Urban Mapping</h3>
                     <p>Landmark-based cartographic representation</p>
+                </div>
+            </div>
+
+             <!-- Nepal -->
+            <div class="card" onclick="openModal('nepal')">
+                <img src="images/Nepal_Nationalparks and its connection wth main Roadway.png" alt="Nepal">
+                <div class="overlay">
+                    <h3>Nepal National Parks</h3>
+                    <p>Protected areas & infrastructure interaction</p>
                 </div>
             </div>
 
@@ -122,6 +140,17 @@
                     <p>3D visualization of atmospheric circulation patterns.</p>
                 </div>
             </div>
+
+            <!-- 3D-Visualisation -->
+            <div class="card" onclick="openModal('Dharan, Nepal -3D')">
+                <img src="images/Dharan, Nepal-3D.png" alt="Dharan, Nepal 3D">
+        
+                <div class="overlay">
+                    <h3>Dharan, Nepal -3D</h3>
+                    <p>3D visualization of Dharan Nepal.</p>
+                </div>
+            </div>
+            
         </div>
     </section>
 
@@ -151,6 +180,10 @@
             <div class="skill medium postgis">
                 <i class="fas fa-server"></i>
                 <span>PostGIS</span>
+            </div>
+            <div class="skill medium POSTGRESQL">
+                <i class="fas fa-network-wired"></i>
+                <span>POSTGRESQL</span>
             </div>
             <div class="skill medium leaflet">
                 <i class="fas fa-leaf"></i>

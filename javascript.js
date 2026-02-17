@@ -48,23 +48,43 @@ const projects = {
         description: "3D visualization of atmospheric circulation patterns.",
         tools: "Tools: Three.js · WebGL · Climate Data",
         link: "https://github.com/prakash023"
-    }
+    },
+    nile: {
+    image: "images/nile.jpeg",
+    title: "Nile Egypt Night Map",
+    description: "High-resolution vertical visualization of the Nile corridor showing urban concentration and spatial morphology along the river system.",
+    tools: "Tools: Remote Sensing · Cartography · Raster Visualization",
+    link: "https://github.com/prakash023"
+    },
+
 };
 
 // Modal functions
 function openModal(projectKey) {
     const modal = document.getElementById("projectModal");
+    const modalContent = document.querySelector(".modal-content");
     const project = projects[projectKey];
-    if (project) {
-        document.getElementById("modalImage").src = project.image;
-        document.getElementById("modalTitle").textContent = project.title;
-        document.getElementById("modalDescription").textContent = project.description;
-        document.getElementById("modalTools").textContent = project.tools;
-        document.getElementById("modalLink").href = project.link;
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden";
+
+    if (!project) return;
+
+    document.getElementById("modalImage").src = project.image;
+    document.getElementById("modalTitle").textContent = project.title;
+    document.getElementById("modalDescription").textContent = project.description;
+    document.getElementById("modalTools").textContent = project.tools;
+
+    // Remove special class first (important)
+    modalContent.classList.remove("kathmandu-full");
+
+    // Add special layout only for Kathmandu
+    if (projectKey === "kathmandu") {
+        modalContent.classList.add("kathmandu-full");
     }
+
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
 }
+
+
 
 function closeModal() {
     document.getElementById("projectModal").style.display = "none";
@@ -264,7 +284,9 @@ function initProjectsRubberContours() {
         mouse.x += (targetMouse.x - mouse.x) * 0.08;
         mouse.y += (targetMouse.y - mouse.y) * 0.08;
 
-        ctx.strokeStyle = "rgba(88,150,50,0.18)";
+        const pulse = 0.15 + Math.sin(time * 2) * 0.05;
+        ctx.strokeStyle = `rgba(88,150,50,${pulse})`;
+
         ctx.lineWidth = 1;
 
         for (let y = 0; y < h; y += 25) {
@@ -412,3 +434,102 @@ function initProjectsRubberContours() {
 
     draw();
 }
+/*Floating dots animation for hero section */
+function initFloatingDots() {
+    const hero = document.querySelector(".hero");
+    if (!hero) return;
+
+    const canvas = document.createElement("canvas");
+    canvas.style.position = "absolute";
+    canvas.style.top = 0;
+    canvas.style.left = 0;
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.pointerEvents = "none";
+    canvas.style.zIndex = "2";
+
+    hero.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resize() {
+        canvas.width = hero.clientWidth;
+        canvas.height = hero.clientHeight;
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    for (let i = 0; i < 40; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2 + 1,
+            dx: (Math.random() - 0.5) * 0.3,
+            dy: (Math.random() - 0.5) * 0.3
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "rgba(88,150,50,0.4)";
+        particles.forEach(p => {
+            p.x += p.dx;
+            p.y += p.dy;
+
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+    initFloatingDots();
+
+
+ /*Scroll reveal animation*/ 
+ function initScrollReveal() {
+    const elements = document.querySelectorAll(".card, .intro, .skills-section");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = "translateY(40px)";
+        el.style.transition = "all 0.6s ease";
+        observer.observe(el);
+    });
+}
+initScrollReveal();
+
+
+function resizeGridItems() {
+    const grid = document.querySelector(".grid");
+    const rowHeight = parseInt(getComputedStyle(grid).getPropertyValue("grid-auto-rows"));
+    const rowGap = parseInt(getComputedStyle(grid).getPropertyValue("gap"));
+
+    grid.querySelectorAll(".card").forEach(item => {
+        const img = item.querySelector("img");
+        const contentHeight = img.getBoundingClientRect().height;
+        const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
+        item.style.gridRowEnd = "span " + rowSpan;
+    });
+}
+
+window.addEventListener("load", resizeGridItems);
+window.addEventListener("resize", resizeGridItems);
