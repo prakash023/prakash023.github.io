@@ -154,16 +154,10 @@ function initTopAnimation() {
     const hero = document.querySelector(".hero");
     if (!hero) return;
 
-    // Remove existing canvas if any
-    const oldCanvas = document.getElementById("gridCanvas");
-    if (oldCanvas) oldCanvas.remove();
-
-    // Create canvas
     const canvas = document.createElement("canvas");
-    canvas.id = "gridCanvas";
     canvas.style.position = "absolute";
-    canvas.style.top = "0";
-    canvas.style.left = "0";
+    canvas.style.top = 0;
+    canvas.style.left = 0;
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.style.zIndex = "1";
@@ -174,49 +168,78 @@ function initTopAnimation() {
     const ctx = canvas.getContext("2d");
     let time = 0;
 
-    function resizeCanvas() {
+    function resize() {
         canvas.width = hero.clientWidth;
         canvas.height = hero.clientHeight;
     }
 
-    window.addEventListener("resize", resizeCanvas);
-
-    function noise(x, y) {
-        return Math.sin(x * 0.02) * Math.cos(y * 0.02) +
-               Math.sin(x * 0.03 + time) * Math.cos(y * 0.03) * 0.5;
-    }
+    resize();
+    window.addEventListener("resize", resize);
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.lineWidth = 1;
 
-        const layers = 40;
-        const spacing = canvas.height / layers;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height * 0.55;
 
-        for (let i = 0; i < layers; i++) {
-            const baseY = i * spacing;
+        const maxRadius = Math.max(canvas.width, canvas.height) * 0.85;
+        const spacing = 20;
+
+        // 🌄 Elevation glow background
+        const gradient = ctx.createRadialGradient(
+            centerX,
+            centerY,
+            0,
+            centerX,
+            centerY,
+            maxRadius
+        );
+
+        gradient.addColorStop(0, "rgba(88,150,50,0.18)");
+        gradient.addColorStop(0.4, "rgba(88,150,50,0.10)");
+        gradient.addColorStop(1, "rgba(0,0,0,0)");
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 🗻 Terrain contours
+        for (let r = spacing; r < maxRadius; r += spacing) {
+
             ctx.beginPath();
 
-            for (let x = 0; x < canvas.width; x += 4) {
-                const n = noise(x * 0.8 + time * 30, baseY * 0.5);
-                const y = baseY + n * 25;
+            for (let angle = 0; angle <= Math.PI * 2; angle += 0.015) {
 
-                if (x === 0) ctx.moveTo(x, y);
+                const terrain =
+                    Math.sin(angle * 2 + r * 0.02 + time * 0.4) * 12 +
+                    Math.cos(angle * 3 - r * 0.015 - time * 0.3) * 9 +
+                    Math.sin(r * 0.05 + time * 0.5) * 5;
+
+                const radius = r + terrain;
+
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+
+                if (angle === 0) ctx.moveTo(x, y);
                 else ctx.lineTo(x, y);
             }
 
-            const alpha = 0.15 + (i / layers) * 0.35;
-            ctx.strokeStyle = `rgba(88,150,50,${alpha})`;
+            ctx.closePath();
+
+            const depthFade = 0.2 + (r / maxRadius) * 0.4;
+            ctx.strokeStyle = `rgba(88,150,50,${depthFade})`;
+            ctx.lineWidth = 1.3;
+
             ctx.stroke();
         }
 
-        time += 0.02;
+        time += 0.015; // slow but visible motion
         requestAnimationFrame(draw);
     }
 
-    resizeCanvas();
     draw();
 }
+
+
 
 
 //Second animation 
@@ -348,12 +371,98 @@ function initProjectsRubberContours() {
     draw();
 }
 
+//Animation 3 for beispielsweise Projekte section
+
+function initProjectsCityGlow() {
+    const section = document.querySelector(".projects");
+    if (!section) return;
+
+    const canvas = document.createElement("canvas");
+    canvas.classList.add("projects-bg-canvas");
+    section.prepend(canvas);
+
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    let time = 0;
+
+    function resize() {
+        // Use scrollHeight to capture full dynamic height
+        canvas.width = section.offsetWidth;
+        canvas.height = section.scrollHeight;
+
+        // Rebuild particles so they fill full new area
+        particles = [];
+        const density = Math.floor((canvas.width * canvas.height) / 15000);
+
+        for (let i = 0; i < density; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.4 + 0.8,
+                pulseSpeed: Math.random() * 0.01 + 0.003,
+                pulseOffset: Math.random() * Math.PI * 2,
+                driftX: (Math.random() - 0.5) * 0.04,
+                driftY: (Math.random() - 0.5) * 0.04
+            });
+        }
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+
+            // Slow drift
+            p.x += p.driftX;
+            p.y += p.driftY;
+
+            // Wrap edges
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+
+            const pulse = 0.4 + Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.3;
+
+            const gradient = ctx.createRadialGradient(
+                p.x, p.y, 0,
+                p.x, p.y, p.radius * 6
+            );
+
+            gradient.addColorStop(0, `rgba(255, 210, 120, ${pulse})`);
+            gradient.addColorStop(1, "rgba(255, 210, 120, 0)");
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius * 6, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        time += 0.5;
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+
+
+
+
+
+//DOMContentLoaded listener.//
 document.addEventListener("DOMContentLoaded", function() {
     initTopAnimation();
-    initProjectsBackground();//for second animation
-    initProjectsRubberContours(); //for second animation
+    initFloatingDots();
+    initProjectsCityGlow();
+    initProjectsBackground();
+    initProjectsRubberContours();
     setTimeout(initMap, 500);
 });
+
 
 window.addEventListener("load", function() {
     setTimeout(initMap, 200);
@@ -479,47 +588,61 @@ function initFloatingDots() {
     hero.appendChild(canvas);
 
     const ctx = canvas.getContext("2d");
-    let particles = [];
+    let stars = [];
+    let time = 0;
+
+    function createStars() {
+        stars = [];
+        const starCount = Math.floor((canvas.width * canvas.height) / 15000);
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1.5,
+                pulseSpeed: Math.random() * 0.02 + 0.01,
+                pulseOffset: Math.random() * Math.PI * 2
+            });
+        }
+    }
 
     function resize() {
         canvas.width = hero.clientWidth;
         canvas.height = hero.clientHeight;
+        createStars(); // regenerate stars for new width
     }
 
     resize();
     window.addEventListener("resize", resize);
 
-    for (let i = 0; i < 40; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: Math.random() * 2 + 1,
-            dx: (Math.random() - 0.5) * 0.3,
-            dy: (Math.random() - 0.5) * 0.3
-        });
-    }
-
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "rgba(88,150,50,0.4)";
-        particles.forEach(p => {
-            p.x += p.dx;
-            p.y += p.dy;
+        stars.forEach(star => {
+            const pulse = 0.6 + Math.sin(time * star.pulseSpeed + star.pulseOffset) * 0.4;
 
-            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+            const gradient = ctx.createRadialGradient(
+                star.x, star.y, 0,
+                star.x, star.y, star.radius * 5
+            );
 
+            gradient.addColorStop(0, `rgba(255, 223, 120, ${pulse})`);
+            gradient.addColorStop(1, "rgba(255, 223, 120, 0)");
+
+            ctx.fillStyle = gradient;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.arc(star.x, star.y, star.radius * 5, 0, Math.PI * 2);
             ctx.fill();
         });
 
+        time += 0.02;
         requestAnimationFrame(animate);
     }
 
     animate();
 }
+
+
     initFloatingDots();
 
 

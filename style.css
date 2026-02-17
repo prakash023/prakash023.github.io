@@ -193,8 +193,17 @@ h2 {
 
 /* ===== PROJECTS ===== */
 .projects {
-    border-bottom: 60px solid #f8f8f8;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        to bottom,
+        #f4f7fa,
+        #eef2f6
+    );
+    border-bottom: 60px solid #eef2f6;
 }
+
+
 
 .projects h2 {
     font-size: 2rem;
@@ -422,8 +431,14 @@ h2 {
 .projects {
     position: relative;
     overflow: hidden;
-    background: #ffffff;
+    background: linear-gradient(
+        to bottom,
+        #101510 0%,
+        #0c110d 100%
+    );
+    border-bottom: 60px solid #0c110d;
 }
+
 
 .projects-bg-canvas {
     position: absolute;
@@ -601,6 +616,7 @@ footer {
     /* Navigation */
     .grid {
         column-count: 1;
+    
     .top-nav {
         top: 15px;
         right: 20px;
@@ -612,7 +628,7 @@ footer {
         padding: 5px 0;
     }
 
-
+    
 
     /* Hero */
     .hero {
@@ -662,6 +678,19 @@ footer {
         position: relative;
         z-index: 2;
     }
+    .projects {
+    background: #f4f6f9; /* soft grey, not harsh white */
+    position: relative;
+    overflow: hidden;
+}
+
+.projects-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+
 
     .grid {
     display: grid;
