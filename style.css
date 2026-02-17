@@ -331,13 +331,14 @@ h2 {
 .skill.python { background: #1abc9c; }
 .skill.qgis { background: #2ecc71; }
 .skill.arcgis { background: #2980b9; }
-.skill.geopandas { background: #16a085; }
+
 .skill.postgis { background: #d35400; }
 .skill.leaflet { background: #27ae60; }
 .skill.network-analysis { background: #8e44ad; }
 .skill.cartography { background: #34495e; }
 .skill.project { background: #f39c12; }
 .skill.POSTGRESQL { background: #19429b; }
+.skill.webdev { background: #e6227d; }
 
 .skill i {
     font-size: 1.8rem;

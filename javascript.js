@@ -384,26 +384,42 @@ function initProjectsCityGlow() {
     const ctx = canvas.getContext("2d");
 
     let particles = [];
+    let noiseDots = [];
     let time = 0;
 
+    let mouse = { x: 0, y: 0 };
+    let targetMouse = { x: 0, y: 0 };
+
     function resize() {
-        // Use scrollHeight to capture full dynamic height
         canvas.width = section.offsetWidth;
         canvas.height = section.scrollHeight;
 
-        // Rebuild particles so they fill full new area
         particles = [];
-        const density = Math.floor((canvas.width * canvas.height) / 15000);
+        noiseDots = [];
 
-        for (let i = 0; i < density; i++) {
+        const glowDensity = Math.floor((canvas.width * canvas.height) / 16000);
+        const noiseDensity = Math.floor((canvas.width * canvas.height) / 9000);
+
+        for (let i = 0; i < glowDensity; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                radius: Math.random() * 1.4 + 0.8,
-                pulseSpeed: Math.random() * 0.01 + 0.003,
+                radius: Math.random() * 1.5 + 0.8,
+                pulseSpeed: Math.random() * 0.01 + 0.004,
                 pulseOffset: Math.random() * Math.PI * 2,
-                driftX: (Math.random() - 0.5) * 0.04,
-                driftY: (Math.random() - 0.5) * 0.04
+                driftX: (Math.random() - 0.5) * 0.02,
+                driftY: (Math.random() - 0.5) * 0.02
+            });
+        }
+
+        for (let i = 0; i < noiseDensity; i++) {
+            noiseDots.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.2 + 0.5,
+                opacity: Math.random() * 0.06 + 0.02,
+                driftX: (Math.random() - 0.5) * 0.008,
+                driftY: (Math.random() - 0.5) * 0.008
             });
         }
     }
@@ -411,16 +427,49 @@ function initProjectsCityGlow() {
     resize();
     window.addEventListener("resize", resize);
 
+    // Mouse movement
+    section.addEventListener("mousemove", (e) => {
+        const rect = section.getBoundingClientRect();
+        targetMouse.x = (e.clientX - rect.left) / rect.width - 0.5;
+        targetMouse.y = (e.clientY - rect.top) / rect.height - 0.5;
+    });
+
+    section.addEventListener("mouseleave", () => {
+        targetMouse.x = 0;
+        targetMouse.y = 0;
+    });
+
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        particles.forEach(p => {
+        // Smooth interpolation
+        mouse.x += (targetMouse.x - mouse.x) * 0.05;
+        mouse.y += (targetMouse.y - mouse.y) * 0.05;
 
-            // Slow drift
+        const parallaxX = mouse.x * 25;
+        const parallaxY = mouse.y * 25;
+
+        // --- Bluish haze ---
+        noiseDots.forEach(dot => {
+            dot.x += dot.driftX;
+            dot.y += dot.driftY;
+
+            if (dot.x < 0) dot.x = canvas.width;
+            if (dot.x > canvas.width) dot.x = 0;
+            if (dot.y < 0) dot.y = canvas.height;
+            if (dot.y > canvas.height) dot.y = 0;
+
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(120, 160, 255, ${dot.opacity})`;
+            ctx.arc(dot.x + parallaxX * 0.4, dot.y + parallaxY * 0.4, dot.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // --- Golden city lights ---
+        particles.forEach(p => {
             p.x += p.driftX;
             p.y += p.driftY;
 
-            // Wrap edges
             if (p.x < 0) p.x = canvas.width;
             if (p.x > canvas.width) p.x = 0;
             if (p.y < 0) p.y = canvas.height;
@@ -429,8 +478,12 @@ function initProjectsCityGlow() {
             const pulse = 0.4 + Math.sin(time * p.pulseSpeed + p.pulseOffset) * 0.3;
 
             const gradient = ctx.createRadialGradient(
-                p.x, p.y, 0,
-                p.x, p.y, p.radius * 6
+                p.x + parallaxX,
+                p.y + parallaxY,
+                0,
+                p.x + parallaxX,
+                p.y + parallaxY,
+                p.radius * 6
             );
 
             gradient.addColorStop(0, `rgba(255, 210, 120, ${pulse})`);
@@ -438,7 +491,7 @@ function initProjectsCityGlow() {
 
             ctx.fillStyle = gradient;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius * 6, 0, Math.PI * 2);
+            ctx.arc(p.x + parallaxX, p.y + parallaxY, p.radius * 6, 0, Math.PI * 2);
             ctx.fill();
         });
 
@@ -448,6 +501,7 @@ function initProjectsCityGlow() {
 
     animate();
 }
+
 
 
 
