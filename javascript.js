@@ -543,9 +543,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }).addTo(map);
     
     // Add a marker
-    L.marker([52.5200, 13.4050]).addTo(map)
-        .bindPopup('Berlin, Germany')
-        .openPopup();
+    L.marker([52.52, 13.405]).addTo(map)
+    .bindPopup(`<b>${placemarkData.name}</b><br>${placemarkData.note}`)
+    .openPopup()
+;
 });
 
 function initProjectsRubberContours() {
