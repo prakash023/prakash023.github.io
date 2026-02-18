@@ -673,6 +673,8 @@ function initFloatingDots() {
     }
 
     resize();
+
+
     window.addEventListener("resize", resize);
 
     function animate() {
@@ -731,8 +733,13 @@ function initContactParticles() {
     resize();
     window.addEventListener("resize", resize);
 
-    const particles = [];
-    const count = 80;
+    const particles = []; //for the floating dots at contact section
+
+    const area = canvas.width * canvas.height;
+    const count = Math.floor(area / 7000); // we used here 6000 instead of 8000 to 
+    // increase the density of particles in the contact section, 
+    // which is smaller than the hero section. Adjust as needed.
+
     const maxDistance = 120;
 
     for (let i = 0; i < count; i++) {
