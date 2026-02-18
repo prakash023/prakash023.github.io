@@ -109,6 +109,8 @@ h2 {
 
 
 
+
+
 .hero-content {
     position: absolute;
     z-index: 20; /* Higher than canvas */
@@ -177,6 +179,21 @@ h2 {
     background: #589632;
 }
 
+.contact-section {
+    position: relative;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+}
+
+#contact > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+
 /* ===== INTRO ===== */
 .intro {
     max-width: 800px;
@@ -208,6 +225,8 @@ h2 {
 .projects h2 {
     font-size: 2rem;
     margin-bottom: 50px;
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 .grid {
