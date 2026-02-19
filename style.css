@@ -221,22 +221,25 @@ h2 {
 }
 
 .grid {
-    column-count: 3;
-    column-gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+
+
+
 .card {
-    display: inline-block;
     width: 100%;
-    margin-bottom: 30px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
     border-radius: 10px;
-    break-inside: avoid;
 }
+
 
 .card img {
     width: 100%;
@@ -273,6 +276,40 @@ h2 {
     z-index: 0;
     pointer-events: none;
 }
+/* Column 1 */
+.card-tilemap {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.card-germany {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.card-ahrensfelde {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+/* Column 2 */
+.card-nile {
+    grid-column: 2;
+    grid-row: 1 / 4; /* spans full height */
+}
+
+/* Column 3 */
+.card-malta {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.card-walkability {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+
 
 /* ===== ENERGY PROJECT BUTTON ===== */
 .energy-btn {
@@ -850,6 +887,42 @@ footer {
         font-size: 1.3rem;
     }
 }
+
+/* ===== PAGINATION BUTTONS ===== */
+
+.pagination {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.pagination-top {
+    margin-bottom: 40px;
+}
+
+.page-btn {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #ffffff;
+    color: #0e1117;
+    cursor: pointer;
+}
+
+.page-btn:hover {
+    background: #74a83d;
+    color: white;
+}
+
+.page-btn.disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: default;
+    pointer-events: none;
+}
+
 
 /* ===== TOUCH DEVICES ===== */
 @media (hover: none) and (pointer: coarse) {
