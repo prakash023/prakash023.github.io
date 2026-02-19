@@ -43,16 +43,12 @@
     
     <section class="intro fade-in">
         <p>
-            <!--Aus Leidenschaft für Geodaten und Technologie möchte ich mit meiner Expertise in Geoinformation, Python,
-            ArcGIS, QGIS und Systemadministration dazu beitragen, GIS-Systeme <span class="highlight">effizienter</span> zu gestalten und
-            datenbasierte Entscheidungen zu unterstützen.-->
             I am working on building and optimizing GIS infrastructures, applying my expertise in geoinformatics, cartographic visualisations, Python, ArcGIS, QGIS, and system administration to support 
             efficient workflows and reliable, data-driven decision-making.
         </p>
     </section>
 
     <section id="projects" class="projects fade-in">
-        <!--<h2>Beispiele Projekte</h2>-->
         <h2>Projects and Visualisations</h2>
 
         <div class="grid">
@@ -65,7 +61,6 @@
                 </div>
             </div>
 
-
             <!-- Ahrensfelde -->
             <div class="card" onclick="openModal('ahrensfelde')">
                 <img src="images/Ahrensfelde Berg.png" alt="Ahrensfelde Terrain">
@@ -75,9 +70,7 @@
                 </div>
             </div>
 
-        
-
-             <!-- Malta -->
+            <!-- Malta -->
             <div class="card" onclick="openModal('malta')">
                 <img src="images/Malta_CellTower_Option3_Preview.png" alt="Malta Urban Density">
                 <div class="overlay">
@@ -95,8 +88,7 @@
                 </div>
             </a>
 
-
-              <!-- Walkability -->
+            <!-- Walkability -->
             <div class="card" onclick="openModal('walkability')">
                 <img src="images/Walkability.png" alt="Walkability">
                 <div class="overlay">
@@ -104,8 +96,6 @@
                     <p>Accessibility modelling using network analysis</p>
                 </div>   
             </div>
-
-
 
             <!-- Germany Railway -->
             <div class="card" onclick="openModal('germanyrail')">
@@ -115,58 +105,14 @@
                     <p>National infrastructure density modelling</p>
                 </div>
             </div>
+        </div>
 
-            
-
-            <!-- Kathmandu -->
-            <div class="card" onclick="openModal('kathmandu')">
-                <img src="images/Kathmandu_Urban.jpeg" alt="Kathmandu">
-                <div class="overlay">
-                    <h3>Kathmandu Urban Mapping</h3>
-                    <p>Landmark-based cartographic representation</p>
-                </div>
-            </div>
-
-             <!-- Nepal -->
-            <div class="card" onclick="openModal('nepal')">
-                <img src="images/Nepal_Nationalparks and its connection wth main Roadway.png" alt="Nepal">
-                <div class="overlay">
-                    <h3>Nepal National Parks</h3>
-                    <p>Protected areas & infrastructure interaction</p>
-                </div>
-            </div>
-
-            <!-- Itahari Urban core -->
-            <div class="card" onclick="openModal('Itahari_c')">
-                <img src="images/Itahari_c.png" alt="Itahari Urban Core">
-                <div class="overlay">
-                    <h3>Itahari Urban</h3>
-                    <p>Urban core itahari visualisation with clear river flow of Kheti khola, Tengra and Budhi khola</p>
-                </div>   
-            </div>
-
-            <!-- Earth Air Flow -->
-            <div class="card" onclick="openModal('earthflow')">
-                <img src="images/Air_earthwithin.gif" alt="Earth Air Flow 3D">
-                <div class="overlay">
-                    <h3>Earth Air Flow 3D</h3>
-                    <p>3D visualization of atmospheric circulation patterns.</p>
-                </div>
-            </div>
-
-            <!-- 3D-Visualisation -->
-            <div class="card" onclick="openModal('dharan3d')">
-                <img src="images/Dharan, Nepal-3D.png" alt="Dharan, Nepal 3D">
-                <div class="overlay">
-                    <h3>Dharan, Nepal -3D</h3>
-                    <p>3D visualization of Dharan Nepal.</p>
-                </div>
-            </div>
-
-            
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="page-number active">1</span>
+            <a href="projects-page2.html" class="page-number">2</a>
         </div>
     </section>
-
 
     <section id="skills" class="skills-section fade-in">
         <h2>Skills</h2>
@@ -218,7 +164,6 @@
                 <i class="fas fa-code"></i>
                 <span>Web Development</span>
             </div>
-
         </div>
     </section>
 
@@ -231,7 +176,7 @@
                 <i class="fas fa-handshake"></i>
                 <h3>Let's Collaborate!</h3>
                 <p class="message-text">
-                    Feel free to reach out anytime if you’d like to collaborate or 
+                    Feel free to reach out anytime if you'd like to collaborate or 
                     have questions about projects related to geospatial data, cartography,
                     data visualization, or spatial analysis.
                 </p>
@@ -274,6 +219,13 @@
             </div>
         </div>
     </div>
+    <!-- Energy Aggregation Modal -->
+        <div class="energy-modal" id="energyModal" onclick="closeEnergyModal()">
+            <div class="energy-modal-content" onclick="event.stopPropagation()">
+                <span class="energy-close" onclick="closeEnergyModal()">&times;</span>
+                <img src="images/Energie_DL_piechart.png" alt="State Level Energy Aggregation">
+            </div>
+        </div>
 
     <footer>
         <p>© 2026 Prakash Neupane | Geoinformation M.Sc.</p>

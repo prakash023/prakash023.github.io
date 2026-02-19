@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prakash | Geospatial Portfolio - Page 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Leaflet CSS for map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top right navigation links -->
+    <div class="top-nav">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Get in Touch</a>
+    </div>
+
+    <header class="hero">
+        <canvas id="gridCanvas"></canvas>
+        
+        <div class="hero-content">
+            <h1>Prakash Neupane</h1>
+            <p>Geospatial Data Management | Spatial Analysis & Visualization</p>
+            
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/neup/" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/prakash023" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="intro fade-in">
+        <p>
+            I am working on building and optimizing GIS infrastructures, applying my expertise in geoinformatics, cartographic visualisations, Python, ArcGIS, QGIS, and system administration to support 
+            efficient workflows and reliable, data-driven decision-making.
+        </p>
+    </section>
+
+    <section id="projects" class="projects fade-in">
+        <h2>Projects and Visualisations - Page 2</h2>
+
+        <div class="grid">
+            <!-- Kathmandu -->
+            <div class="card" onclick="openModal('kathmandu')">
+                <img src="images/Kathmandu_Urban.jpeg" alt="Kathmandu">
+                <div class="overlay">
+                    <h3>Kathmandu Urban Mapping</h3>
+                    <p>Landmark-based cartographic representation</p>
+                </div>
+            </div>
+
+            <!-- Nepal -->
+            <div class="card" onclick="openModal('nepal')">
+                <img src="images/Nepal_Nationalparks and its connection wth main Roadway.png" alt="Nepal">
+                <div class="overlay">
+                    <h3>Nepal National Parks</h3>
+                    <p>Protected areas & infrastructure interaction</p>
+                </div>
+            </div>
+
+            <!-- Itahari Urban core -->
+            <div class="card" onclick="openModal('Itahari_c')">
+                <img src="images/Itahari_c.png" alt="Itahari Urban Core">
+                <div class="overlay">
+                    <h3>Itahari Urban</h3>
+                    <p>Urban core itahari visualisation with clear river flow of Kheti khola, Tengra and Budhi khola</p>
+                </div>   
+            </div>
+
+            <!-- Earth Air Flow -->
+            <div class="card" onclick="openModal('earthflow')">
+                <img src="images/Air_earthwithin.gif" alt="Earth Air Flow 3D">
+                <div class="overlay">
+                    <h3>Earth Air Flow 3D</h3>
+                    <p>3D visualization of atmospheric circulation patterns.</p>
+                </div>
+            </div>
+
+            <!-- 3D-Visualisation -->
+            <div class="card" onclick="openModal('dharan3d')">
+                <img src="images/Dharan, Nepal-3D.png" alt="Dharan, Nepal 3D">
+                <div class="overlay">
+                    <h3>Dharan, Nepal -3D</h3>
+                    <p>3D visualization of Dharan Nepal.</p>
+                </div>
+            </div>
+
+            <!-- Energy Infrastructure Analysis -->
+            <div class="card energy-project">
+                <img src="images/Energy_sources.png" alt="Energy Infrastructure Germany">
+                <div class="overlay">
+                    <h3>Energy Infrastructure – Germany</h3>
+                    <p>Spatial distribution and clustering analysis of renewable and non-renewable energy facilities.</p>
+                    <button class="energy-btn" onclick="openEnergyModal()">View State-Level Aggregation</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="index.html#projects" class="page-number">1</a>
+            <span class="page-number active">2</span>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section fade-in">
+        <h2>Skills</h2>
+        <div class="skills-network">
+            <div class="skill center">
+                <span>Geoinformation</span>
+                <span>M.Sc.</span>
+            </div>
+            <div class="skill large cartography">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Cartography</span>
+            </div>
+            <div class="skill large python">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="skill large qgis">
+                <i class="fas fa-map"></i>
+                <span>QGIS</span>
+            </div>
+            <div class="skill large arcgis">
+                <i class="fas fa-globe"></i>
+                <span>ArcGIS</span>
+            </div>
+       
+            <div class="skill medium postgis">
+                <i class="fas fa-server"></i>
+                <span>PostGIS</span>
+            </div>
+            <div class="skill medium POSTGRESQL">
+                <i class="fas fa-network-wired"></i>
+                <span>POSTGRESQL</span>
+            </div>
+            <div class="skill medium leaflet">
+                <i class="fas fa-leaf"></i>
+                <span>Leaflet</span>
+            </div>
+            <div class="skill medium network-analysis">
+                <i class="fas fa-project-diagram"></i>
+                <span>Network Analysis</span>
+            </div>
+            
+            <div class="skill small project">
+                <i class="fas fa-tasks"></i>
+                <span>Project Mgmt</span>
+            </div>
+
+            <div class="skill medium webdev">
+                <i class="fas fa-code"></i>
+                <span>Web Development</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section fade-in">
+        <h2>Get In Touch</h2>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="collaboration-message">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Let's Collaborate!</h3>
+                    <p class="message-text">
+                        Feel free to reach out anytime if you'd like to collaborate or 
+                        have questions about projects related to geospatial data, cartography,
+                        data visualization, or spatial analysis.
+                    </p>
+                </div>
+                <div class="direct-contact">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="mailto:prakash023@gmail.com" class="social-icon" target="_blank">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/neup/" class="social-icon" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/prakash023" class="social-icon" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SIMPLE MAP CONTAINER -->
+            <div class="map-wrapper">
+                <div id="berlin-map"></div>
+                <div class="location-badge">
+                    <i class="fas fa-map-pin"></i> Berlin, Deutschland
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="projectModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-text">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+                <p id="modalTools"></p>
+                <a id="modalLink" href="#" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Energy Aggregation Modal -->
+    <div class="energy-modal" id="energyModal" onclick="closeEnergyModal()">
+        <div class="energy-modal-content" onclick="event.stopPropagation()">
+            <span class="energy-close" onclick="closeEnergyModal()">&times;</span>
+            <img src="images/Energie_DL_piechart.png" alt="State Level Energy Aggregation">
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Prakash Neupane | Geoinformation M.Sc.</p>
+        <div class="footer-links">
+            <a href="mailto:prakash023@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/neup/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/prakash023" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Main JavaScript - ONLY ONE SCRIPT -->
+    <script src="javascript.js"></script>
+
+</body>
+</html>

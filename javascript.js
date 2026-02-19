@@ -871,3 +871,12 @@ function resizeGridItems() {
 window.addEventListener("load", resizeGridItems);
 window.addEventListener("resize", resizeGridItems);
 
+function openEnergyModal() {
+    document.getElementById("energyModal").style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+function closeEnergyModal() {
+    document.getElementById("energyModal").style.display = "none";
+    document.body.style.overflow = "auto";
+}
