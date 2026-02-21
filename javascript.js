@@ -880,3 +880,109 @@ function closeEnergyModal() {
     document.getElementById("energyModal").style.display = "none";
     document.body.style.overflow = "auto";
 }
+
+function openNepalModal() {
+    const modal = document.getElementById("nepalModal");
+    const iframe = document.getElementById("nepalIframe");
+    iframe.src = "nepal3d/index.html";  // path to your 3D viewer
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+function closeNepalModal() {
+    const modal = document.getElementById("nepalModal");
+    const iframe = document.getElementById("nepalIframe");
+    iframe.src = "";  // stops the 3D rendering when closed
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+function openNepalModal() {
+    const modal = document.getElementById("nepalModal");
+    const iframe = document.getElementById("nepalIframe");
+    iframe.src = "nepal3d/index.html";  // path to your 3D viewer
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+function closeNepalModal() {
+    const modal = document.getElementById("nepalModal");
+    const iframe = document.getElementById("nepalIframe");
+    iframe.src = "";  // stops the 3D rendering when closed
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+
+// Nepal 3D Model handling
+document.addEventListener('DOMContentLoaded', function() {
+    const modelViewer = document.querySelector('model-viewer');
+    
+    if (modelViewer) {
+        // Handle loading errors
+        modelViewer.addEventListener('error', (error) => {
+            console.error('Model viewer error:', error);
+            // Fallback message
+            const container = document.querySelector('.nepal-3d-container');
+            if (container) {
+                const errorMsg = document.createElement('div');
+                errorMsg.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    background: rgba(0,0,0,0.8);
+                    padding: 20px;
+                    border-radius: 10px;
+                    text-align: center;
+                    z-index: 100;
+                `;
+                errorMsg.innerHTML = '⚠️ Could not load 3D model<br><small>Please check file path: images/nepal_terrain.glb</small>';
+                container.appendChild(errorMsg);
+            }
+        });
+
+        // Hide poster when loaded
+        modelViewer.addEventListener('load', () => {
+            const overlay = document.querySelector('.model-viewer-overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+        });
+    }
+});
+
+// Remove old modal functions since we're using direct embedding
+function openNepalModal() {
+    // This function is no longer needed but kept to avoid errors
+    console.log('Nepal terrain is now directly embedded');
+}
+
+function closeNepalModal() {
+    // This function is no longer needed but kept to avoid errors
+    console.log('Nepal terrain is now directly embedded');
+}
+document.addEventListener("DOMContentLoaded", function () {
+
+    const viewer = document.getElementById("nepalViewer");
+    const axisSVG = document.getElementById("axisSVG");
+
+    if (!viewer || !axisSVG) return;
+
+    viewer.addEventListener("load", () => {
+
+        viewer.addEventListener("camera-change", () => {
+
+            const orbit = viewer.getCameraOrbit();
+            const azimuth = orbit.theta * 180 / Math.PI;
+            const elevation = orbit.phi * 180 / Math.PI;
+
+            axisSVG.style.transform =
+                `rotateZ(${azimuth}deg) rotateX(${elevation}deg)`;
+
+        });
+
+    });
+
+});

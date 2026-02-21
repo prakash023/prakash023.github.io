@@ -4,32 +4,25 @@
     <meta charset="UTF-8">
     <title>Prakash | Geospatial Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Leaflet CSS for map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-    <!-- Main Stylesheet -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Top right navigation links -->
     <div class="top-nav">
         <a href="#projects">Projects</a>
+        <a href="#nepal3d">3D Terrain</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Get in Touch</a>
     </div>
 
     <header class="hero">
         <canvas id="gridCanvas"></canvas>
-        
         <div class="hero-content">
             <h1>Prakash Neupane</h1>
             <p>Geospatial Data Management | Spatial Analysis & Visualization</p>
-            
             <div class="contact-links">
                 <a href="https://www.linkedin.com/in/neup/" target="_blank" class="contact-link">
                     <i class="fab fa-linkedin"></i> LinkedIn
@@ -43,16 +36,14 @@
     
     <section class="intro fade-in">
         <p>
-            I am working on building and optimizing GIS infrastructures, applying my expertise in geoinformatics, cartographic visualisations, Python, ArcGIS, QGIS, and system administration to support 
-            efficient workflows and reliable, data-driven decision-making.
+            I am working on building and optimizing GIS infrastructures, applying my expertise in geoinformatics, cartographic visualisations, Python, ArcGIS, QGIS, and system administration to support efficient workflows and reliable, data-driven decision-making.
         </p>
     </section>
 
     <section id="projects" class="projects fade-in">
         <h2>Projects and Visualisations</h2>
-
         <div class="grid">
-            <!-- Tilemap Project -->
+
             <div class="card" onclick="window.open('https://github.com/prakash023/TileMap-Generator-', '_blank')">
                 <img src="images/tilemap.gif" alt="Tilemap_Generator">
                 <div class="overlay">
@@ -61,7 +52,6 @@
                 </div>
             </div>
 
-            <!-- Ahrensfelde -->
             <div class="card" onclick="openModal('ahrensfelde')">
                 <img src="images/Ahrensfelde Berg.png" alt="Ahrensfelde Terrain">
                 <div class="overlay">
@@ -70,7 +60,6 @@
                 </div>
             </div>
 
-            <!-- Malta -->
             <div class="card" onclick="openModal('malta')">
                 <img src="images/Malta_CellTower_Option3_Preview.png" alt="Malta Urban Density">
                 <div class="overlay">
@@ -79,7 +68,6 @@
                 </div>
             </div>
 
-            <!-- Nile Egypt -->
             <a href="images/nile.jpeg" download class="card card-nile">
                 <img src="images/nile.jpeg" alt="Nile Egypt Night Map">
                 <div class="overlay">
@@ -88,7 +76,6 @@
                 </div>
             </a>
 
-            <!-- Walkability -->
             <div class="card" onclick="openModal('walkability')">
                 <img src="images/Walkability.png" alt="Walkability">
                 <div class="overlay">
@@ -97,7 +84,6 @@
                 </div>   
             </div>
 
-            <!-- Germany Railway -->
             <div class="card" onclick="openModal('germanyrail')">
                 <img src="images/Eisenbahnnetz-Deutschland2025.png" alt="Germany Railway">
                 <div class="overlay">
@@ -105,18 +91,119 @@
                     <p>National infrastructure density modelling</p>
                 </div>
             </div>
+
         </div>
 
-        <!-- Pagination -->
-        <!-- Top Pagination -->
         <div class="pagination pagination-top">
             <span class="page-btn disabled">Prev</span>
             <span class="page-number active">1</span>
             <a href="projects-page2.html" class="page-number">2</a>
             <a href="projects-page2.html" class="page-btn">Next</a>
         </div>
-
     </section>
+
+    <!-- NEPAL 3D TERRAIN SECTION -->
+    <section id="nepal3d" class="nepal-3d-section fade-in">
+        <h2>A 3D view Nepal with major river</h2>
+        <p class="nepal-3d-subtitle">
+            Drag to rotate &nbsp;·&nbsp; Scroll to zoom  &nbsp;·&nbsp; Rivers carved in geometry
+        </p>
+        <div class="nepal-3d-container">
+            <div class="nepal-3d-container">
+
+        <model-viewer
+            
+            id="nepalViewer"
+            src="images/nepal_terrain.glb"
+        
+            orientation="180deg 0deg 0deg"
+            camera-orbit="0deg 48deg 115%"
+            camera-target="0m 0m 0m"
+
+            
+            min-camera-orbit="auto -180deg 180%"
+            max-camera-orbit="auto 180deg 300%"
+
+            interaction-prompt="none"
+            rotation-per-second="10deg"
+
+            alt="3D model of Nepal Himalayan terrain"
+            auto-rotate
+            camera-controls
+            ar
+
+            ar-modes="webxr scene-viewer quick-look"
+            environment-image="neutral"
+            exposure="0.8"
+            shadow-intensity="1"
+            loading="eager"
+
+            reveal="auto"
+            tone-mapping="commerce"
+            rotation-per-second="30deg">
+
+            <div class="model-viewer-overlay" slot="poster">
+                <div class="loading-spinner"></div>
+                <p>Loading 3D Terrain...</p>
+            </div>
+        </model-viewer>
+        <div class="axis-overlay">
+            <svg id="axisSVG" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2" fill="rgba(0,0,0,0.6)" />
+
+                <line x1="50" y1="50" x2="85" y2="50" stroke="red" stroke-width="3"/>
+                <text x="88" y="53" fill="red" font-size="10">X</text>
+
+
+                <line x1="50" y1="50" x2="50" y2="15" stroke="lime" stroke-width="3"/>
+                <text x="47" y="12" fill="lime" font-size="10">Y</text>
+
+                <line x1="50" y1="50" x2="25" y2="75" stroke="blue" stroke-width="3"/>
+                <text x="18" y="85" fill="blue" font-size="10">Z</text>
+            </svg>
+        </div>
+
+    <!-- Axis Widget Added Below -->
+    <div class="axis-arrows">
+        <div class="axis-cube">
+            <div class="arrow x-axis">
+            <div class="line"></div>  
+            <div class="head"></div>
+            <span>X</span>
+        </div>
+
+        <div class="arrow y-axis">
+            <div class="line"></div>
+            <div class="head"></div>
+            <span>Y</span>  
+        </div>
+
+        <div class="arrow z-axis">
+            <div class="line"></div>
+            <div class="head"></div>
+            <span>Z</span>
+        </div>
+    </div>
+    </div>
+
+</div>
+        <p class="nepal-3d-caption">
+            Generated from 30m SRTM DEM · UTM Zone 44N · Rivers from OpenStreetMap
+        </p>
+    </section>
+
+        <div class="axis-widget">
+            <div class="axis-cube">
+                <div class="face front">Z</div>
+                <div class="face back"></div>
+                    <div class="face right">X</div>
+                    <div class="face left"></div>
+                    <div class="face top">Y</div>
+                    <div class="face bottom"></div>
+            </div>
+        </div>
+
+
 
     <section id="skills" class="skills-section fade-in">
         <h2>Skills</h2>
@@ -141,7 +228,6 @@
                 <i class="fas fa-globe"></i>
                 <span>ArcGIS</span>
             </div>
-       
             <div class="skill medium postgis">
                 <i class="fas fa-server"></i>
                 <span>PostGIS</span>
@@ -158,12 +244,10 @@
                 <i class="fas fa-project-diagram"></i>
                 <span>Network Analysis</span>
             </div>
-            
             <div class="skill small project">
                 <i class="fas fa-tasks"></i>
                 <span>Project Mgmt</span>
             </div>
-
             <div class="skill medium webdev">
                 <i class="fas fa-code"></i>
                 <span>Web Development</span>
@@ -171,22 +255,18 @@
         </div>
     </section>
 
-
-
-
     <section id="contact" class="contact-section fade-in">
-    <h2>Get In Touch</h2>
-
-    <div class="contact-container">
-        <div class="contact-info">
-            <div class="collaboration-message">
-                <i class="fas fa-handshake"></i>
-                <h3>Let's Collaborate!</h3>
-                <p class="message-text">
-                    Feel free to reach out anytime if you'd like to collaborate or 
-                    have questions about projects related to geospatial data, cartography,
-                    data visualization, or spatial analysis.
-                </p>
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="collaboration-message">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Let's Collaborate!</h3>
+                    <p class="message-text">
+                        Feel free to reach out anytime if you'd like to collaborate or 
+                        have questions about projects related to geospatial data, cartography,
+                        data visualization, or spatial analysis.
+                    </p>
                 </div>
                 <div class="direct-contact">
                     <h4>Connect</h4>
@@ -203,8 +283,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- SIMPLE MAP CONTAINER -->
             <div class="map-wrapper">
                 <div id="berlin-map"></div>
                 <div class="location-badge">
@@ -214,6 +292,7 @@
         </div>
     </section>
 
+    <!-- Project Modal -->
     <div class="modal" id="projectModal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -226,13 +305,14 @@
             </div>
         </div>
     </div>
+
     <!-- Energy Aggregation Modal -->
-        <div class="energy-modal" id="energyModal" onclick="closeEnergyModal()">
-            <div class="energy-modal-content" onclick="event.stopPropagation()">
-                <span class="energy-close" onclick="closeEnergyModal()">&times;</span>
-                <img src="images/Energie_DL_piechart.png" alt="State Level Energy Aggregation">
-            </div>
+    <div class="energy-modal" id="energyModal" onclick="closeEnergyModal()">
+        <div class="energy-modal-content" onclick="event.stopPropagation()">
+            <span class="energy-close" onclick="closeEnergyModal()">&times;</span>
+            <img src="images/Energie_DL_piechart.png" alt="State Level Energy Aggregation">
         </div>
+    </div>
 
     <footer>
         <p>© 2026 Prakash Neupane | Geoinformation M.Sc.</p>
@@ -243,9 +323,7 @@
         </div>
     </footer>
 
-    <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- Main JavaScript - ONLY ONE SCRIPT -->
     <script src="javascript.js"></script>
 
 </body>

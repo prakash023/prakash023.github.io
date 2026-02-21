@@ -1,0 +1,47 @@
+/* ===== NEPAL 3D TERRAIN SECTION ===== */
+.nepal-3d-section {
+    background: #0e1117;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.nepal-3d-section h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.nepal-3d-subtitle {
+    color: #8b949e;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.nepal-3d-caption {
+    color: #444;
+    margin-top: 15px;
+    font-size: 0.8rem;
+}
+
+.nepal-3d-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 600px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.nepal-3d-container model-viewer {
+    width: 100%;
+    height: 100%;
+    background: #0e1117;
+}
+
+@media (max-width: 768px) {
+    .nepal-3d-container {
+        height: 350px;
+    }
+}
