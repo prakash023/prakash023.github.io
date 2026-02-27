@@ -69,7 +69,15 @@ dharan3d: {
     title: "Dharan, Nepal - 3D",
     description: "3D visualization of Dharan Nepal.",
     tools: "Tools: QGIS · 3D Modeling"
-}
+},
+
+leipzig: {
+    image: "images/leipzig_detail.png",
+    title: "Leipzig Infrastructure Data Management",
+    description: "Structured spatial database modelling and buffer-based spatial analysis of underground utilities using PostGIS. Results published via GeoServer and visualized in Leaflet.",
+    tools: "Tools: PostgreSQL · PostGIS · GeoServer · Leaflet · SQL",
+    link: "https://github.com/prakash023/Underground-Utility-Conflict-Detection-PostGIS-GeoServer-"
+},
 
 
 
