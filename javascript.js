@@ -73,7 +73,7 @@ dharan3d: {
 
 leipzig: {
     image: "images/leipzig_detail.png",
-    title: "Leipzig Infrastructure Data Management",
+    title: "Leipzig: Underground Utility Conflict Detection and Geodata Management",
     description: "Structured spatial database modelling and buffer-based spatial analysis of underground utilities using PostGIS. Results published via GeoServer and visualized in Leaflet.",
     tools: "Tools: PostgreSQL · PostGIS · GeoServer · Leaflet · SQL",
     link: "https://github.com/prakash023/Underground-Utility-Conflict-Detection-PostGIS-GeoServer-"
