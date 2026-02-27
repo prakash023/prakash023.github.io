@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="openModal('malta')">
+            <div class="card" onclick="window.open('https://github.com/prakash023/3D--Visualisation/blob/main/Malta_CellTower_Option3_Preview.png')">
                 <img src="images/Malta_CellTower_Option3_Preview.png" alt="Malta Urban Density">
                 <div class="overlay">
                     <h3>Malta Urban Density</h3>
@@ -111,76 +111,73 @@
     </section>
 
     <!-- NEPAL 3D TERRAIN SECTION -->
-    <section id="nepal3d" class="nepal-3d-section fade-in">
-        <h2>Nepal in 3D: Terrain and Major Rivers</h2>
+   
+        <section id="nepal3d" class="nepal-3d-section fade-in">
+            <h2>Nepal in 3D: Terrain and Major Rivers</h2>
 
-        <p class="nepal-3d-subtitle">
-            Drag to rotate &nbsp;·&nbsp; Scroll to zoom  &nbsp;·&nbsp; Rivers carved in geometry
-        </p>
+            <p class="nepal-3d-subtitle">
+                Drag to rotate · Scroll to zoom · Rivers carved in geometry
+            </p>
 
         <div class="nepal-3d-container">
 
-        <model-viewer
-            
-            id="nepalViewer"
-            src="images/nepal_terrain.glb"
-        
-            orientation="180deg 0deg 0deg"
-            camera-orbit="0deg 48deg 115%"
-            camera-target="0m 0m 0m"
-
-            
-            min-camera-orbit="auto -180deg 180%"
-            max-camera-orbit="auto 180deg 300%"
-
-            interaction-prompt="none"
-            rotation-per-second="10deg"
-
-            alt="3D model of Nepal terrain"
-            auto-rotate
-            camera-controls
-            ar
-
-            ar-modes="webxr scene-viewer quick-look"
-            environment-image="neutral"
-            exposure="0.8"
-            shadow-intensity="1"
-            loading="eager"
-
-            reveal="auto"
-            tone-mapping="commerce"
-            rotation-per-second="30deg">
+            <model-viewer
+                id="nepalViewer"
+                src="images/nepal_terrain.glb"
+                orientation="180deg 0deg 0deg"
+                camera-orbit="0deg 48deg 115%"
+                camera-target="0m 0m 0m"
+                min-camera-orbit="auto -180deg 180%"
+                max-camera-orbit="auto 180deg 300%"
+                interaction-prompt="none"
+                auto-rotate
+                rotation-per-second="30deg"
+                camera-controls
+                ar
+                ar-modes="webxr scene-viewer quick-look"
+                environment-image="neutral"
+                exposure="0.8"
+                shadow-intensity="1"
+                loading="eager"
+                reveal="auto"
+                tone-mapping="commerce"
+                alt="3D model of Nepal terrain">
+            </model-viewer>    
 
             <div class="model-viewer-overlay" slot="poster">
                 <div class="loading-spinner"></div>
                 <p>Loading 3D Terrain...</p>
             </div>
-        </model-viewer>
+        </div>
 
-        <!--For 3d axis rotation reference*// -->
+        <!-- Download Button -->
+        <div class="nepal-download-wrapper">
+            <a href="images/nepal_terrain.glb"
+               download="Nepal_3D_Terrain.glb"
+               class="download-btn">
+               Download 3D Model (.glb)
+            </a>
+        </div>
+
+        <!-- 3D Axis Reference -->
         <div class="axis-overlay">
             <svg id="axisSVG" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2" fill="rgba(0,0,0,0.6)" />
-
                 <line x1="50" y1="50" x2="85" y2="50" stroke="red" stroke-width="3"/>
                 <text x="88" y="53" fill="red" font-size="6">X</text>
-
-
                 <line x1="50" y1="50" x2="50" y2="15" stroke="lime" stroke-width="3"/>
                 <text x="47" y="12" fill="lime" font-size="6">Y</text>
-
                 <line x1="50" y1="50" x2="25" y2="75" stroke="blue" stroke-width="3"/>
                 <text x="18" y="85" fill="blue" font-size="6">Z</text>
             </svg>
         </div>
-     </div>
 
-    <!-- Axis Widget Added Below -->
-   
-    </div>
-        <p class="nepal-3d-caption">
-            30m SRTM DEM | hydrosheds.org | QGIS
-        </p>
+        </div>
+
+            <p class="nepal-3d-caption">
+                30m SRTM DEM | hydrosheds.org | QGIS
+            </p>
+
     </section>
 
 

@@ -1203,3 +1203,22 @@ model-viewer {
     transform-origin: 50% 50%;
     transition: transform 0.1s linear;
 }
+.nepal-download-wrapper {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #589632;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.download-btn:hover {
+    background: #74a83d;
+}
