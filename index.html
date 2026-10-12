@@ -18,8 +18,38 @@
         <a href="#contact">Get in Touch</a>
     </div>
 
-    <header class="hero">
-        <canvas id="gridCanvas"></canvas>
+<header class="hero">
+    <canvas id="gridCanvas"></canvas>
+
+    <aside class="clock-sidebar" aria-label="Local time">
+        <div class="analog-clock" id="analogClock">
+
+            <div class="clock-face" role="img" aria-label="Analog clock">
+                <div class="clock-numerals" aria-hidden="true">
+                    <span style="--i:0">12</span>
+                    <span style="--i:1">1</span>
+                    <span style="--i:2">2</span>
+                    <span style="--i:3">3</span>
+                    <span style="--i:4">4</span>
+                    <span style="--i:5">5</span>
+                    <span style="--i:6">6</span>
+                    <span style="--i:7">7</span>
+                    <span style="--i:8">8</span>
+                    <span style="--i:9">9</span>
+                    <span style="--i:10">10</span>
+                    <span style="--i:11">11</span>
+                </div>
+
+                <div class="clock-hand hour-hand" id="hourHand"></div>
+                <div class="clock-hand minute-hand" id="minuteHand"></div>
+                <div class="clock-hand second-hand" id="secondHand"></div>
+                <div class="clock-center"></div>
+            </div>
+
+            <div class="clock-digital" id="digitalTime">--:--:--</div>
+
+        </div>
+    </aside>
         <div class="hero-content">
             <h1>Prakash Neupane</h1>
             <p>Geospatial Data Management | Spatial Analysis & Visualization</p>
@@ -42,7 +72,9 @@
 
     <section id="projects" class="projects fade-in">
         <h2>Projects and Visualisations</h2>
-        <div class="grid">
+        <div class="projects-layout">
+          <div class="projects-main">
+            <div class="grid">
 
             <div class="card" onclick="window.open('https://github.com/prakash023/TileMap-Generator-', '_blank')">
                 <img src="images/tilemap.gif" alt="Tilemap_Generator">
@@ -118,13 +150,21 @@
 
         </div>
 
+
         <!-- GNSS PROJECT -->
         <div style="margin-top: 40px;">
-            <h3>GNSS Accuracy Analysis (Berlin)</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <h3>GNSS Accuracy Analysis - Urban Environment (Berlin)</h3>
+                <a href="https://github.com/prakash023/GNSS-Smoothing-with-DCE---Potsdamer-Platz" 
+                target="_blank" 
+                style="background: #24292e; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-github"></i> View Repository
+            </a>
+            </div>
 
             <p style="max-width: 800px;">
                 Analysis of GNSS positioning accuracy in an urban environment (Potsdamer Platz, Berlin).
-                The project compares GNSS measurements with ground truth data and visualizes spatial errors using an interactive map.
+                The project compares GNSS measurements with ground truth data and visualizes spatial errors using an interactive map. 
             </p>
 
             <iframe 
@@ -132,12 +172,10 @@
                 width="100%" 
                 height="600"
                 style="border:none; margin-top: 20px;">
-             </iframe>
+            </iframe>
 
             <p style="margin-top: 10px;">
-                <a href="gnss_analysis_map.html" target="_blank">
-                Open full interactive map →
-                </a>
+                <a href="gnss_analysis_map.html" target="_blank">Open full interactive map →</a>
             </p>
         </div>
 
@@ -147,6 +185,10 @@
             <a href="projects-page2.html" class="page-number">2</a>
             <a href="projects-page2.html" class="page-btn">Next</a>
         </div>
+
+
+    </div><!-- /.projects-main -->
+        </div><!-- /.projects-layout -->
     </section>
 
     <!-- NEPAL 3D TERRAIN SECTION -->

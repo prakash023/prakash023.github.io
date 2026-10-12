@@ -198,7 +198,7 @@ function initTopAnimation() {
         const maxRadius = Math.max(canvas.width, canvas.height) * 0.85;
         const spacing = 20;
 
-        // 🌄 Elevation glow background
+        // Elevation glow background
         const gradient = ctx.createRadialGradient(
             centerX,
             centerY,
@@ -215,7 +215,7 @@ function initTopAnimation() {
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // 🗻 Terrain contours
+        //  Terrain contours
         for (let r = spacing; r < maxRadius; r += spacing) {
 
             ctx.beginPath();
@@ -994,3 +994,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+/* ===== LIVE ANALOG CLOCK ===== */
+function initAnalogClock() {
+    const hourHand = document.getElementById('hourHand');
+    const minuteHand = document.getElementById('minuteHand');
+    const secondHand = document.getElementById('secondHand');
+    const digitalTime = document.getElementById('digitalTime');
+    if (!hourHand || !minuteHand || !secondHand || !digitalTime) return;
+
+    function updateClock() {
+        const now = new Date();
+        const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+        hourHand.style.transform = `translateX(-50%) rotate(${(h % 12) * 30 + m * 0.5}deg)`;
+        minuteHand.style.transform = `translateX(-50%) rotate(${m * 6 + s * 0.1}deg)`;
+        secondHand.style.transform = `translateX(-50%) rotate(${s * 6 + now.getMilliseconds() * 0.006}deg)`;
+        /*localtimeformat*/
+        digitalTime.textContent = now.toLocaleTimeString('de-DE', 
+            {hour12: false
+    });
+
+    }
+    updateClock();
+    window.setInterval(updateClock, 250);
+}
+document.addEventListener('DOMContentLoaded', initAnalogClock);
